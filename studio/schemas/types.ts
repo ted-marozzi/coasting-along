@@ -82,6 +82,13 @@ export interface Post extends SanityDocument {
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
+
+    /**
+     * Alternative text — `string`
+     *
+     *
+     */
+    alt: string;
   };
 
   /**
