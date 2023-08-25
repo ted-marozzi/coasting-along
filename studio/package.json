@@ -8,6 +8,7 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "preview": "sanity start",
+    "generate": "npx sanity-codegen",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy"
   },
@@ -24,7 +25,8 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.25",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "sanity-codegen": "^0.9.8"
   },
   "prettier": {
     "printWidth": 90

@@ -9,6 +9,14 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
+    }),
+    defineField({
+      name: "subheading",
+      title: "Subheading",
+      type: "string",
     }),
     defineField({
       name: "slug",
@@ -18,12 +26,18 @@ export default defineType({
         source: "title",
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "authors",
       title: "Authors",
       type: "array",
       of: [{ type: "reference", to: { type: "author" } }],
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "mainImage",
@@ -32,25 +46,46 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          validation: (Rule) => Rule.required(),
+          // @ts-ignore
+          codegen: { required: true },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "categories",
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "publishedAt",
       title: "Published at",
-      type: "datetime",
+      type: "date",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "body",
       title: "Body",
       type: "blockContent",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
   ],
-
   preview: {
     select: {
       title: "title",

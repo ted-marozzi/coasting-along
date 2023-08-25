@@ -9,11 +9,17 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "description",
       title: "Description",
       type: "text",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
   ],
 });

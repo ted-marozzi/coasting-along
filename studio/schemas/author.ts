@@ -9,15 +9,9 @@ export default defineType({
       name: "name",
       title: "Name",
       type: "string",
-    }),
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "name",
-        maxLength: 96,
-      },
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "image",
@@ -26,6 +20,19 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          validation: (Rule) => Rule.required(),
+          // @ts-ignore
+          codegen: { required: true },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
     defineField({
       name: "bio",
@@ -39,6 +46,9 @@ export default defineType({
           lists: [],
         },
       ],
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
     }),
   ],
   preview: {
