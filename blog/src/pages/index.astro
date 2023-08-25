@@ -1,0 +1,21 @@
+---
+import { useSanityClient } from "@sanity/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = await useSanityClient().fetch(`*[_type == "post"]`);
+---
+
+<BaseLayout title="Home Page">
+  <h1>Coasting Along</h1>
+  {
+    posts && (
+      <ul>
+        {posts.map((post: any) => (
+          <li>
+            <a href={`post/${post.slug.current}`}>{post.title}</a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>

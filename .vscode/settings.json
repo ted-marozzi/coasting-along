@@ -1,0 +1,7 @@
+{
+  "cSpell.words": ["astro", "datetime", "hotspot", "Marozzi", "oous"],
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
