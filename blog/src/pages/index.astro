@@ -1,8 +1,9 @@
 ---
 import { useSanityClient } from "@sanity/astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Post } from "../../../studio/schemas/types";
 
-const posts = await useSanityClient().fetch(`*[_type == "post"]`);
+const posts = await useSanityClient().fetch<Array<Post>>(`*[_type == "post"]`);
 ---
 
 <BaseLayout title="Home Page">
@@ -10,7 +11,7 @@ const posts = await useSanityClient().fetch(`*[_type == "post"]`);
   {
     posts && (
       <ul>
-        {posts.map((post: any) => (
+        {posts.map((post) => (
           <li>
             <a href={`post/${post.slug.current}`}>{post.title}</a>
           </li>

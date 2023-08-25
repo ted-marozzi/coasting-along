@@ -2,24 +2,41 @@
 import { useSanityClient } from "@sanity/astro";
 import PortableText from "../../components/PortableText.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { Author, Category, Post } from "../../../../studio/schemas/types";
+
+interface Props {
+  post: Omit<Post, "authors" | "categories"> & {
+    authors: Array<Author>;
+    categories: Array<Category>;
+  };
+}
 
 export async function getStaticPaths() {
-  const posts = await useSanityClient().fetch(`*[_type == "post"]`);
+  const posts = await useSanityClient().fetch<Array<Props["post"]>>(`*[_type == "post"]{
+    ...,
+    authors[]->,
+    categories[]->,
+  }`);
 
-  return posts.map((post: any) => {
+  return posts.map((post) => {
     return {
       params: {
-        slug: post.slug?.current || "",
+        slug: post.slug.current,
       },
-      props: { ...post },
+      props: { post },
     };
   });
 }
 
-const { title, body } = Astro.props;
+const props = Astro.props;
 ---
 
 <BaseLayout>
-  <h1>{title}</h1>
-  <PortableText portableText={body} />
+  <h1>{props.post.title}</h1>
+  {props.post.subheading !== undefined && <h4>{props.post.subheading}</h4>}
+  <div>by {props.post.authors.map((author) => author.name).join(" ")}</div>
+  <PortableText portableText={props.post.mainImage} />
+  <div>{props.post.categories.map((catagory) => catagory.title).join(" ")}</div>
+  <div>Published {props.post.publishedAt}</div>
+  <PortableText portableText={props.post.body} />
 </BaseLayout>
