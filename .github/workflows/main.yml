@@ -26,4 +26,4 @@ jobs:
 
       - run: npm -w studio run generate:check
 
-      - run: npm -w studio run deploy
+      - run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm -w studio run deploy
