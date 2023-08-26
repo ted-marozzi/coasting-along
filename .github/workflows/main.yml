@@ -27,3 +27,6 @@ jobs:
       - run: npm -w studio run generate:check
 
       - run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm -w studio run deploy
+
+      - name: Deploy
+        run: curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK_ID }}"
