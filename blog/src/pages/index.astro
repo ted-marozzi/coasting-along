@@ -6,14 +6,22 @@ import type { Post } from "../../../studio/schemas/types";
 const posts = await useSanityClient().fetch<Array<Post>>(`*[_type == "post"]`);
 ---
 
-<BaseLayout title="Home Page">
+<BaseLayout
+  title="Home Page"
+  meta="Join Ruby and Ted on Coasting Along as they explore Australia from coast to coaster. Discover travel adventures, remote work tips, surfing spots, and mouth-watering food experiences."
+>
   <h1>Coasting Along</h1>
   {
     posts && (
       <ul>
         {posts.map((post) => (
           <li>
-            <a href={`post/${post.slug.current}`}>{post.title}</a>
+            <a
+              href={`post/${post.slug.current}`}
+              style="min-height: 48px; min-width: 48px;"
+            >
+              {post.title}
+            </a>
           </li>
         ))}
       </ul>

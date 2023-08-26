@@ -19,6 +19,16 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "meta",
+      title: "meta",
+      description:
+        "Concise summary of page content for search results (won't be displayed directly on the page)",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",

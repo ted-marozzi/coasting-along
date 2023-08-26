@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 const props = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout title={`${props.post.title} | Coasting Along`} meta={props.post.meta}>
   <h1>{props.post.title}</h1>
   {props.post.subheading !== undefined && <h4>{props.post.subheading}</h4>}
   <div>by {props.post.authors.map((author) => author.name).join(" ")}</div>

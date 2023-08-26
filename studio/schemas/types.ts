@@ -59,6 +59,13 @@ export interface Post extends SanityDocument {
   subheading?: string;
 
   /**
+   * meta — `string`
+   *
+   * Concise summary of page content for search results (won't be displayed directly on the page)
+   */
+  meta: string;
+
+  /**
    * Slug — `slug`
    *
    *
