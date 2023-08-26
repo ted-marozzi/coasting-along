@@ -9,6 +9,7 @@
     "build": "sanity build",
     "preview": "sanity start",
     "generate": "npx sanity-codegen",
+    "generate:check": "npm run generate && git update-index --refresh",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy"
   },
