@@ -1,9 +1,9 @@
 ---
 type Props = {
   title: string;
-  meta: string;
+  metaDescription: string;
 };
-const { title, meta } = Astro.props;
+const { title, metaDescription } = Astro.props;
 ---
 
 <html lang="en">
@@ -12,7 +12,7 @@ const { title, meta } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={meta} />
+    <meta name="description" content={metaDescription} />
     <title>{title}</title>
   </head>
   <body>

@@ -31,12 +31,15 @@ export async function getStaticPaths() {
 const props = Astro.props;
 ---
 
-<BaseLayout title={`${props.post.title} | Coasting Along`} meta={props.post.meta}>
+<BaseLayout
+  title={`${props.post.title} | Coasting Along`}
+  metaDescription={props.post.metaDescription}
+>
   <h1>{props.post.title}</h1>
   {props.post.subheading !== undefined && <strong>{props.post.subheading}</strong>}
   <div>by {props.post.authors.map((author) => author.name).join(" ")}</div>
   <PortableText portableText={props.post.mainImage} />
   <div>{props.post.categories.map((catagory) => catagory.title).join(" ")}</div>
-  <div>Published {props.post.publishedAt}</div>
+  <div>Published {props.post._updatedAt}</div>
   <PortableText portableText={props.post.body} />
 </BaseLayout>

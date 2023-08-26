@@ -59,11 +59,11 @@ export interface Post extends SanityDocument {
   subheading?: string;
 
   /**
-   * meta — `string`
+   * Meta Description — `string`
    *
    * Concise summary of page content for search results (won't be displayed directly on the page)
    */
-  meta: string;
+  metaDescription: string;
 
   /**
    * Slug — `slug`
@@ -104,13 +104,6 @@ export interface Post extends SanityDocument {
    *
    */
   categories: Array<SanityKeyedReference<Category>>;
-
-  /**
-   * Published at — `date`
-   *
-   *
-   */
-  publishedAt: string;
 
   /**
    * Body — `blockContent`

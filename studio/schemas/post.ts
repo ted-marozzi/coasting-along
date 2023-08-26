@@ -19,8 +19,8 @@ export default defineType({
       type: "string",
     }),
     defineField({
-      name: "meta",
-      title: "meta",
+      name: "metaDescription",
+      title: "Meta Description",
       description:
         "Concise summary of page content for search results (won't be displayed directly on the page)",
       type: "string",
@@ -75,14 +75,6 @@ export default defineType({
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
-      validation: (Rule) => Rule.required(),
-      // @ts-ignore
-      codegen: { required: true },
-    }),
-    defineField({
-      name: "publishedAt",
-      title: "Published at",
-      type: "date",
       validation: (Rule) => Rule.required(),
       // @ts-ignore
       codegen: { required: true },
