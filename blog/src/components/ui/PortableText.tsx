@@ -9,6 +9,7 @@ import {
   TypedObject,
 } from "@portabletext/types";
 import { Image } from "@nextui-org/image";
+import { Link } from "@nextui-org/link";
 
 const components: Partial<PortableTextReactComponents> = {
   types: {
@@ -19,7 +20,7 @@ const components: Partial<PortableTextReactComponents> = {
       return (
         <Image
           className="p-2"
-          alt={value.alt ?? ""}
+          alt={value.alt}
           loading="lazy"
           src={urlFor(value).width(1024).height(400).fit("max").auto("format").url()}
         />
@@ -33,6 +34,26 @@ const components: Partial<PortableTextReactComponents> = {
           {title.text}
         </h1>
       ));
+    },
+  },
+  marks: {
+    internalLink: ({ value, children }) => {
+      console.log(value);
+
+      const { _type, slug = {}, url } = value;
+      const href = url ? url : `/${_type}/${slug.current}`;
+      return <Link href={href}>{children}</Link>;
+    },
+    externalLink: ({ value, children }) => {
+      console.log(value);
+      const { blank, href } = value;
+      return blank ? (
+        <Link href={href} target="_blank" rel="noopener">
+          {children}
+        </Link>
+      ) : (
+        <Link href={href}>{children}</Link>
+      );
     },
   },
 };

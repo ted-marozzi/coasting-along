@@ -41,7 +41,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             ))}
           </AvatarGroup>
         </Row>
-        <PortableText value={post.body} />
+        <div className="py-4">
+          <PortableText value={post.body} />
+        </div>
       </div>
     </Container>
   );
