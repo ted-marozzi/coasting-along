@@ -7,6 +7,7 @@ import { PortableText } from "@/components/ui/portableText";
 import { Row } from "@/components/ui/ui_layout";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Container } from "@/components/ui/container";
+import { Content } from "@/components/ui/content";
 
 type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -37,7 +38,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Container>
-      <div className="max-w-screen-lg mx-auto">
+      <Content>
         <h1 className="py-3">{post.title}</h1>
         <Row mainAxisAlignment="start" crossAxisAlignment="end">
           by
@@ -57,7 +58,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="py-4">
           <PortableText value={post.body} />
         </div>
-      </div>
+      </Content>
     </Container>
   );
 }
