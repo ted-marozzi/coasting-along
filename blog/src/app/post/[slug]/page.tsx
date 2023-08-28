@@ -12,6 +12,9 @@ type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
   categories: Array<Category>;
 };
+
+export const runtime = "edge";
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await client.fetch<PostDeref>(
     `*[_type == "post" && slug.current == $slug][0]{

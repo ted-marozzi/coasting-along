@@ -37,22 +37,11 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
   marks: {
-    internalLink: ({ value, children }) => {
-      console.log(value);
-
-      const { _type, slug = {}, url } = value;
-      const href = url ? url : `/${_type}/${slug.current}`;
-      return <Link href={href}>{children}</Link>;
-    },
-    externalLink: ({ value, children }) => {
-      console.log(value);
-      const { blank, href } = value;
-      return blank ? (
-        <Link href={href} target="_blank" rel="noopener">
+    link: ({ value, children }) => {
+      return (
+        <Link href={value.href} isExternal>
           {children}
         </Link>
-      ) : (
-        <Link href={href}>{children}</Link>
       );
     },
   },
