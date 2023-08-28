@@ -1,5 +1,5 @@
 import { client } from "@/sanity/client";
-import type { Author, Category, Post } from "@/../../studio/schemas/types";
+import type { Author, Category, Post } from "@/sanity/types";
 import { AvatarGroup } from "@/components/ui/avatar";
 import { urlFor } from "@/sanity/image";
 import { Avatar } from "@nextui-org/avatar";
