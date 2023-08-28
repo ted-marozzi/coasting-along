@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Container>
-      <div>
+      <div className="wi">
         <h1 className="py-3">{post.title}</h1>
         <Row mainAxisAlignment="start" crossAxisAlignment="end">
           by
