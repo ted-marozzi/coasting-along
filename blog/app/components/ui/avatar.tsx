@@ -7,5 +7,11 @@ export function AvatarGroup(props: AvatarGroupProps & { show: boolean }) {
     return <div className="py-2 px-2">{props.children}</div>;
   }
 
-  return <AvatarGroupInternal  {...{...props, show: undefined}} className="py-2 px-4" size="lg" />;
+  return (
+    <AvatarGroupInternal
+      {...{ ...props, show: undefined }}
+      className="py-2 px-4"
+      size="lg"
+    />
+  );
 }
