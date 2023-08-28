@@ -18,9 +18,10 @@ const components: Partial<PortableTextReactComponents> = {
       }
       return (
         <Image
+          className="p-2"
           alt={value.alt ?? ""}
           loading="lazy"
-          src={urlFor(value).width(800).height(400).fit("max").auto("format").url()}
+          src={urlFor(value).width(1024).height(400).fit("max").auto("format").url()}
         />
       );
     },

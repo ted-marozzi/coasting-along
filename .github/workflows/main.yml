@@ -33,9 +33,5 @@ jobs:
 
       - run: cd blog && npm run lint
 
-      - run: cd blog && npm run generate:check
-
-      - run: cd blog && SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
-
       - name: Deploy
         run: curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK_ID }}"
