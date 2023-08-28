@@ -18,15 +18,25 @@ jobs:
           node-version: 18.x
           cache: "npm"
 
-      - run: npm install
+      - run: cd studio && npm install
 
-      - run: npm run format:check
+      - run: cd studio && npm run format:check
 
-      - run: npm run lint
+      - run: cd studio && npm run lint
 
-      - run: npm -w studio run generate:check
+      - run: cd studio && npm run generate:check
 
-      - run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm -w studio run deploy
+      - run: cd studio && SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
+
+      - run: cd blog && npm install
+
+      - run: cd blog && npm run format:check
+
+      - run: cd blog && npm run lint
+
+      - run: cd blog && npm run generate:check
+
+      - run: cd blog && SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
 
       - name: Deploy
         run: curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK_ID }}"

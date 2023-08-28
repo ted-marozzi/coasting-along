@@ -9,6 +9,7 @@
     "build": "sanity build",
     "lint": "tsc",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "sanity start",
     "generate": "npx sanity-codegen",
     "generate:check": "npm run generate && git update-index --refresh",

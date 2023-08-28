@@ -6,7 +6,8 @@
     "hotspot",
     "Marozzi",
     "oous",
-    "portabletext"
+    "portabletext",
+    "tailwindcss"
   ],
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
