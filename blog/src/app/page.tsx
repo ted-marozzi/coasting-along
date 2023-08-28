@@ -2,8 +2,6 @@ import { Container } from "@/components/ui/container";
 import { client } from "@/sanity/client";
 import { Link } from "@nextui-org/link";
 
-export const runtime = "edge";
-
 export default async function Home() {
   const posts = await client.fetch<Array<{ title: string; slug: { current: string } }>>(
     `*[_type == "post"]{
