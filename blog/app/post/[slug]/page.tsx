@@ -13,10 +13,19 @@ type PostDeref = Omit<Post, "authors" | "categories"> & {
   categories: Array<Category>;
 };
 
-export const runtime = "edge";
+export async function generateStaticParams({ params }: { params: { slug: string } }) {
+  const posts = await client.fetch<Array<{ slug: { current: string } }>>(
+    `*[_type == "post"]{
+      slug
+    }`,
+  );
+
+  return posts.map((post) => ({
+    slug: post.slug.current,
+  }));
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  // TODO this can't be static
   const post = await client.fetch<PostDeref>(
     `*[_type == "post" && slug.current == $slug][0]{
     ...,
