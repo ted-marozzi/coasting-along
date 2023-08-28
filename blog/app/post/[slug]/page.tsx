@@ -1,12 +1,12 @@
-import { client } from "@//sanity/client";
+import { client } from "@/sanity/client";
 import type { Author, Category, Post } from "@/../../studio/schemas/types";
-import { AvatarGroup } from "@//components/ui/avatar";
-import { urlFor } from "@//sanity/image";
+import { AvatarGroup } from "@/components/ui/avatar";
+import { urlFor } from "@/sanity/image";
 import { Avatar } from "@nextui-org/avatar";
-import { PortableText } from "@//components/ui/portableText";
+import { PortableText } from "@/components/ui/portableText";
 import { Row } from "@/components/ui/ui_layout";
 import { Tooltip } from "@nextui-org/tooltip";
-import { Container } from "@//components/ui/container";
+import { Container } from "@/components/ui/container";
 
 type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
