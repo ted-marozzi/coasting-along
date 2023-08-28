@@ -1,3 +1,4 @@
+import { Container } from "@/components/ui/container";
 import { client } from "@/sanity/client";
 import { Link } from "@nextui-org/link";
 
@@ -9,8 +10,8 @@ export default async function Home() {
     }`,
   );
   return (
-    <main>
-      Posts
+    <Container>
+      <h1 className="py-3">Posts</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.title}>
@@ -18,6 +19,6 @@ export default async function Home() {
           </li>
         ))}
       </ul>
-    </main>
+    </Container>
   );
 }

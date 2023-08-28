@@ -8,6 +8,7 @@ import {
   PortableTextBlock,
   TypedObject,
 } from "@portabletext/types";
+import { Image } from "@nextui-org/image";
 
 const components: Partial<PortableTextReactComponents> = {
   types: {
@@ -16,7 +17,7 @@ const components: Partial<PortableTextReactComponents> = {
         return null;
       }
       return (
-        <img
+        <Image
           alt={value.alt ?? ""}
           loading="lazy"
           src={urlFor(value).width(800).height(400).fit("max").auto("format").url()}
