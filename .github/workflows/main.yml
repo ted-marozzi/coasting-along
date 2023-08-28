@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: cd studio && npm install
+      - run: cd studio && npm install --force
 
       - run: cd studio && npm run format:check
 
