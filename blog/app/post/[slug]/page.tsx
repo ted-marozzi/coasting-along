@@ -4,7 +4,7 @@ import { AvatarGroup } from "@/components/ui/avatar";
 import { urlFor } from "@/sanity/image";
 import { Avatar } from "@nextui-org/avatar";
 import { PortableText } from "@/components/ui/portableText";
-import { Row } from "@/components/ui/ui_layout";
+import { Row } from "@/components/ui/uiLayout";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Container } from "@/components/ui/container";
 import { Content } from "@/components/ui/content";
