@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           by
           <AvatarGroup show={post.authors.length >= 2}>
             {post.authors.map((author) => (
-              <Tooltip content={author.name}>
+              <Tooltip content={author.name} key={author._id}>
                 <Avatar
                   isBordered
                   color="primary"

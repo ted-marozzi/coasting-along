@@ -25,6 +25,11 @@ const components: Partial<PortableTextReactComponents> = {
       );
     },
   },
+  block: {
+    h1: ({ value }) => {
+      return value.children.map((title) => <h1 className="py-2">{title.text}</h1>);
+    },
+  },
 };
 
 export function PortableText<
