@@ -1,14 +1,13 @@
 import { urlFor } from "@/sanity/image";
-import { Image } from "@nextui-org/image";
-import { Card } from "@nextui-org/card";
+import { LightBoxImage } from "./lightBoxImage";
 
 export function PortableImage({ value }: any) {
   if (!value?.asset?._ref) {
     return null;
   }
   return (
-    <div className="m-3">
-      <Image
+    <div className="my-3">
+      <LightBoxImage
         alt={""}
         src={urlFor(value).width(1024).maxHeight(1024).fit("crop").auto("format").url()}
       />

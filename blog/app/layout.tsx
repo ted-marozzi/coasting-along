@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href={"/"}>
               <NavbarBrand>
                 <Icon className="p-3" />
-                <h2>Coasting Along</h2>
+                <h2 className="text-primary">Coasting Along</h2>
               </NavbarBrand>
             </Link>
           </Navbar>
