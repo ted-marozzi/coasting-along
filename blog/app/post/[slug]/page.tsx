@@ -8,13 +8,16 @@ import { Row } from "@/components/ui/uiLayout";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Container } from "@/components/ui/container";
 import { Content } from "@/components/ui/content";
+import { Metadata } from "next/types";
 
 type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
   categories: Array<Category>;
 };
 
-export async function generateStaticParams({ params }: { params: { slug: string } }) {
+type RouteParams = { params: { slug: string } };
+
+export async function generateStaticParams({ params }: RouteParams) {
   const posts = await client.fetch<Array<{ slug: { current: string } }>>(
     `*[_type == "post"]{
       slug
@@ -26,7 +29,22 @@ export async function generateStaticParams({ params }: { params: { slug: string 
   }));
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
+  const post = await client.fetch<{ title: string; metaDescription: string }>(
+    `*[_type == "post" && slug.current == $slug][0]{
+      title,
+      metaDescription
+    }`,
+    { slug: params.slug },
+  );
+
+  return {
+    title: `${post.title} | Coasting Along`,
+    description: post.metaDescription,
+  };
+}
+
+export default async function Page({ params }: RouteParams) {
   const post = await client.fetch<PostDeref>(
     `*[_type == "post" && slug.current == $slug][0]{
     ...,
