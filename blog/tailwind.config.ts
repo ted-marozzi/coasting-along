@@ -13,6 +13,17 @@ const config: Config = {
   variants: {
     extend: {},
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: "#6B7D5C",
+            background: "#F6EFDC",
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

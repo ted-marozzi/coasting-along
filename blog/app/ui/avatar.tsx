@@ -10,7 +10,7 @@ export function AvatarGroup(props: AvatarGroupProps & { show: boolean }) {
   return (
     <AvatarGroupInternal
       {...{ ...props, show: undefined }}
-      className="py-2 px-4"
+      className="py-2 px-6"
       size="lg"
     />
   );

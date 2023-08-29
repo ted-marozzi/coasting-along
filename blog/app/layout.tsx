@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="light">
+    <html lang="en" className="light text-foreground bg-background">
       <body className={inter.className}>
         <Providers>
           <Navbar shouldHideOnScroll>
