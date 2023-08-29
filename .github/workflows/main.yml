@@ -8,7 +8,7 @@ on:
     branches: ["main"]
 
 jobs:
-  ci:
+  studio:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,6 +26,15 @@ jobs:
       - run: cd studio && npm run generate:check
 
       - run: cd studio && SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
+
+  blog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
 
       - run: cd blog && npm install
 
