@@ -1,13 +1,13 @@
 import { client } from "@/sanity/client";
 import type { Author, Category, Post } from "@/sanity/types";
-import { AvatarGroup } from "@/components/ui/avatar";
+import { AvatarGroup } from "@/ui/avatar";
 import { urlFor } from "@/sanity/image";
 import { Avatar } from "@nextui-org/avatar";
-import { PortableText } from "@/components/ui/portableText";
-import { Row } from "@/components/ui/uiLayout";
+import { PortableText } from "@/ui/portableText";
+import { Row } from "@/ui/uiLayout";
 import { Tooltip } from "@nextui-org/tooltip";
-import { Container } from "@/components/ui/container";
-import { Content } from "@/components/ui/content";
+import { Container } from "@/ui/container";
+import { Content } from "@/ui/content";
 import { Metadata } from "next/types";
 
 type PostDeref = Omit<Post, "authors" | "categories"> & {

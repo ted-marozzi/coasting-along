@@ -1,7 +1,7 @@
-import { Container } from "@/components/ui/container";
+import { Container } from "@/ui/container";
 import { client } from "@/sanity/client";
 import { Link } from "@nextui-org/link";
-import { Content } from "@/components/ui/content";
+import { Content } from "@/ui/content";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
