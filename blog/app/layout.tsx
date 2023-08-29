@@ -4,6 +4,7 @@ import { Providers } from "@/components/providers";
 import { Navbar, NavbarBrand } from "@nextui-org/navbar";
 import { Icon } from "@/ui/icons";
 import Link from "next/link";
+import { Container } from "./ui/container";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -12,15 +13,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="light text-foreground bg-background">
       <body className={font.className}>
         <Providers>
-          <Navbar shouldHideOnScroll>
-            <Link href={"/"}>
-              <NavbarBrand>
-                <Icon className="p-3" />
-                <h2 className="text-primary">Coasting Along</h2>
-              </NavbarBrand>
-            </Link>
-          </Navbar>
-          {children}
+          <Container>
+            <Navbar shouldHideOnScroll className="justify-start">
+              <Link href={"/"}>
+                <NavbarBrand>
+                  <Icon className="p-3" />
+                  <h3 className="text-primary">Coasting Along</h3>
+                </NavbarBrand>
+              </Link>
+            </Navbar>
+            <div className="pt-8">{children}</div>
+          </Container>
         </Providers>
       </body>
     </html>

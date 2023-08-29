@@ -9,6 +9,7 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { Container } from "@/ui/container";
 import { Content } from "@/ui/content";
 import { Metadata } from "next/types";
+import { Chip } from "@nextui-org/chip";
 
 type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -54,29 +55,49 @@ export default async function Page({ params }: RouteParams) {
     { slug: params.slug },
   );
 
+  const localDate = new Date(post._updatedAt);
   return (
-    <Container>
-      <Content>
-        <h1 className="py-3">{post.title}</h1>
-        <Row mainAxisAlignment="start" crossAxisAlignment="end">
-          by
-          <AvatarGroup show={post.authors.length >= 2}>
-            {post.authors.map((author) => (
-              <Tooltip content={author.name} key={author._id}>
-                <Avatar
-                  isBordered
-                  color="primary"
-                  src={urlFor(author.image.asset).width(256).width(256).url()}
-                  alt={author.name}
-                />
-              </Tooltip>
-            ))}
-          </AvatarGroup>
-        </Row>
-        <div className="py-4">
-          <PortableText value={post.body} />
-        </div>
-      </Content>
-    </Container>
+    <Content>
+      <div className="pb-2">
+        <h1>{post.title}</h1>
+        {post.subheading !== undefined && post.subheading !== "" && (
+          <h6>{post.subheading}</h6>
+        )}
+      </div>
+      <div className="pb-2">
+        {post.categories.map((category) => (
+          <span className="pr-2">
+            <Chip id={category._id} variant="flat" color="secondary">
+              {category.title}
+            </Chip>
+          </span>
+        ))}
+      </div>
+      <div className="pb-2">{localDate.toDateString()}</div>
+      <Row mainAxisAlignment="start" crossAxisAlignment="end" className="pb-6 px-4">
+        <AvatarGroup show={post.authors.length >= 2}>
+          {post.authors.map((author) => (
+            <Tooltip
+              content={author.name}
+              key={author._id}
+              placement="bottom"
+              classNames={{
+                base: "bg-secondary bg-opacity-20 text-secondary",
+              }}
+            >
+              <Avatar
+                isBordered
+                color="secondary"
+                src={urlFor(author.image.asset).width(256).width(256).url()}
+                alt={author.name}
+              />
+            </Tooltip>
+          ))}
+        </AvatarGroup>
+      </Row>
+      <div className="py-4">
+        <PortableText value={post.body} />
+      </div>
+    </Content>
   );
 }
