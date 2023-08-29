@@ -18,9 +18,10 @@ const config: Config = {
       themes: {
         light: {
           colors: {
-            primary: "#6B7D5C",
-            background: "#F6EFDC",
-            focus: "#6B7D5C",
+            primary: "#6b7d5c",
+            secondary: "#fa39da",
+            background: "#f6efdc",
+            focus: "#fa39da",
           },
         },
       },

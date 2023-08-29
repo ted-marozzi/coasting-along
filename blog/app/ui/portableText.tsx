@@ -26,7 +26,7 @@ const components: Partial<PortableTextReactComponents> = {
   marks: {
     link: ({ value, children }) => {
       return (
-        <Link href={value.href} isExternal className="text-blue-600">
+        <Link href={value.href} isExternal color="secondary">
           {children}
         </Link>
       );

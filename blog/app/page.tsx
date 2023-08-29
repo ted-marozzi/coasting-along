@@ -24,11 +24,7 @@ export default async function Home() {
         <ul>
           {posts.map((post) => (
             <li key={post.title}>
-              <Link
-                className="text-blue-600"
-                color="primary"
-                href={`/post/${post.slug.current}`}
-              >
+              <Link color="secondary" href={`/post/${post.slug.current}`}>
                 {post.title}
               </Link>
             </li>
