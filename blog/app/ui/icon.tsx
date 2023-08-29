@@ -1,7 +1,25 @@
+import { Image } from "@nextui-org/image";
+import NextImage from "next/image";
 export function Icon(props: { className?: string }) {
-  return <img src="/image-icon.png" width={64} height={64} className={props.className} />;
+  return (
+    <Image
+      alt="Coasting Along Icon"
+      src="/image-icon.png"
+      width={64}
+      height={64}
+      className={props.className}
+    />
+  );
 }
 
 export function TitleIcon(props: { className?: string }) {
-  return <img src="/title-icon.png" width={64} height={64} className={props.className} />;
+  return (
+    <Image
+      alt="Coasting Along Title Icon"
+      src="/title-icon.png"
+      width={64}
+      height={64}
+      className={props.className}
+    />
+  );
 }
