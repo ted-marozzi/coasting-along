@@ -17,7 +17,7 @@ export default async function Page({ params }: RouteParams) {
   return (
     <>
       <div className="pb-2">
-        <h2>Our Writers</h2>
+        <h2>Our Authors</h2>
       </div>
       {authors.map((author, i) => (
         <div id={author.name} className="flex py-14">

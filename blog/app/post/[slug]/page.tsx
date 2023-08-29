@@ -92,7 +92,7 @@ export default async function Page({ params }: RouteParams) {
               }}
             >
               <Link
-                href={`/writers#${author.name}`}
+                href={`/authors#${author.name}`}
                 className="hover:z-10 hover:opacity-90"
               >
                 <Avatar
