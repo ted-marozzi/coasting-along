@@ -91,7 +91,10 @@ export default async function Page({ params }: RouteParams) {
                 base: "bg-secondary bg-opacity-20 text-secondary",
               }}
             >
-              <Link href={`/writers#${author.name}`}>
+              <Link
+                href={`/writers#${author.name}`}
+                className="hover:z-10 hover:opacity-90"
+              >
                 <Avatar
                   isBordered
                   color="secondary"
