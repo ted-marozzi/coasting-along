@@ -1,10 +1,8 @@
 import "./globals.css";
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navbar, NavbarBrand } from "@nextui-org/navbar";
-import { Icon, TitleIcon } from "@/ui/icon";
-import { useRouter } from "next/navigation";
+import { Icon } from "@/ui/icons";
 import Link from "next/link";
 
 const font = Montserrat({ subsets: ["latin"] });

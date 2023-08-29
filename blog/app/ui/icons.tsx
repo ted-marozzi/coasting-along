@@ -1,5 +1,5 @@
 import { Image } from "@nextui-org/image";
-import NextImage from "next/image";
+
 export function Icon(props: { className?: string }) {
   return (
     <Image
