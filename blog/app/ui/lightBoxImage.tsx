@@ -4,7 +4,12 @@ import { Modal } from "@nextui-org/modal";
 import { ModalContent } from "@nextui-org/react";
 import { useDisclosure } from "@nextui-org/use-disclosure";
 
-export function LightBoxImage(props: { src: string; alt: string }) {
+export function LightBoxImage(props: {
+  src: string;
+  lightBoxSrc: string;
+  alt: string;
+  loading?: "eager" | "lazy";
+}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -14,16 +19,16 @@ export function LightBoxImage(props: { src: string; alt: string }) {
         onOpenChange={onOpenChange}
         size="5xl"
         className="bg-background"
-        scrollBehavior="outside"
       >
         <ModalContent className="p-8 !m-auto">
-          <Image alt={props.alt} src={props.src} />
+          <Image alt={props.alt} src={props.lightBoxSrc} loading={props.loading} />
         </ModalContent>
       </Modal>
       <Image
         alt={props.alt}
         src={props.src}
         onClick={onOpen}
+        loading={props.loading}
         className="cursor-zoom-in"
       />
     </>

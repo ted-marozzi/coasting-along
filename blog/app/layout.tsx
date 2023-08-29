@@ -5,6 +5,7 @@ import { Navbar, NavbarBrand } from "@nextui-org/navbar";
 import { Icon } from "@/ui/icons";
 import Link from "next/link";
 import { Container } from "./ui/container";
+import { Content } from "./ui/content";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </NavbarBrand>
               </Link>
             </Navbar>
-            <div className="pt-8">{children}</div>
+            <Content>{children}</Content>
           </Container>
         </Providers>
       </body>

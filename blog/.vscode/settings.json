@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["codegen", "Hotspot", "nextui", "oous", "portabletext", "tailwindcss"]
+  "cSpell.words": ["codegen", "Hotspot", "nextui", "oous", "portabletext", "tailwindcss"],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
 }
