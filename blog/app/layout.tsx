@@ -1,18 +1,18 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navbar, NavbarBrand } from "@nextui-org/navbar";
 import { Icon, TitleIcon } from "@/ui/icon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Montserrat({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="light text-foreground bg-background">
-      <body className={inter.className}>
+      <body className={font.className}>
         <Providers>
           <Navbar shouldHideOnScroll>
             <Link href={"/"}>

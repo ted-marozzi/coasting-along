@@ -20,6 +20,7 @@ const config: Config = {
           colors: {
             primary: "#6B7D5C",
             background: "#F6EFDC",
+            focus: "#6B7D5C",
           },
         },
       },
