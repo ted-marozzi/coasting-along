@@ -20,7 +20,7 @@ export default async function Page({ params }: RouteParams) {
         <h2>Our Authors</h2>
       </div>
       {authors.map((author, i) => (
-        <div id={author.name} className="flex py-14">
+        <div id={author.name} key={author._id} className="flex py-14">
           {i % 2 === 0 ? (
             <>
               <AuthorImage author={author} /> <AuthorText author={author} />
