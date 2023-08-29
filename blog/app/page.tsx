@@ -42,11 +42,12 @@ export default async function Home() {
                   .fit("crop")
                   .auto("format")
                   .url()}
+                loading="eager"
                 alt={post.mainImage.alt}
               />
-              <div className="pt-2 text-secondary">
+              <div className="pt-2 text-secondary flex justify-center">
                 {post.categories.map((category) => (
-                  <span className="px-2" key={category._id}>
+                  <span key={category._id} className="px-2">
                     {category.title}
                   </span>
                 ))}
