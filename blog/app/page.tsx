@@ -21,7 +21,6 @@ export default async function Home() {
   return (
     <Container>
       <Content>
-        <h1 className="py-3">Posts</h1>
         <ul>
           {posts.map((post) => (
             <li key={post.title}>
