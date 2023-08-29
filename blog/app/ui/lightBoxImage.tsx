@@ -20,7 +20,7 @@ export function LightBoxImage(props: {
         size="5xl"
         className="bg-background"
       >
-        <ModalContent className="p-8 !m-auto">
+        <ModalContent className="p-8 !m-auto flex items-center">
           <Image alt={props.alt} src={props.lightBoxSrc} loading={props.loading} />
         </ModalContent>
       </Modal>

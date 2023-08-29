@@ -1,4 +1,4 @@
-import { CategoryChips } from "@/components/catagories";
+import { CategoryChips } from "@/components/categories";
 import { client } from "@/sanity/client";
 import { urlFor } from "@/sanity/image";
 import type { Author, Category, Post } from "@/sanity/types";
@@ -7,6 +7,7 @@ import { LightBoxImage } from "@/ui/lightBoxImage";
 import { PortableText } from "@/ui/portableText";
 import { Row } from "@/ui/uiLayout";
 import { Avatar } from "@nextui-org/avatar";
+import { Link } from "@nextui-org/link";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Metadata } from "next/types";
 
@@ -90,12 +91,14 @@ export default async function Page({ params }: RouteParams) {
                 base: "bg-secondary bg-opacity-20 text-secondary",
               }}
             >
-              <Avatar
-                isBordered
-                color="secondary"
-                src={urlFor(author.image.asset).width(256).width(256).url()}
-                alt={author.name}
-              />
+              <Link href={`/writers#${author.name}`}>
+                <Avatar
+                  isBordered
+                  color="secondary"
+                  src={urlFor(author.image.asset).width(256).width(256).url()}
+                  alt={author.name}
+                />
+              </Link>
             </Tooltip>
           ))}
         </AvatarGroup>
