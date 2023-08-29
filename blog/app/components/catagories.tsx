@@ -1,4 +1,4 @@
-import { Category, Post, SanityKeyedReference } from "@/sanity/types";
+import { Category } from "@/sanity/types";
 import { Chip } from "@nextui-org/chip";
 
 export function CategoryChips(props: {
@@ -8,7 +8,7 @@ export function CategoryChips(props: {
   return (
     <div>
       {props.categories.map((category) => (
-        <span className="pr-2">
+        <span className="pr-2" key={category._id}>
           <Chip id={category._id} variant={props.variant} color="secondary">
             {category.title}
           </Chip>

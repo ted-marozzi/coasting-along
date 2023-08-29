@@ -1,10 +1,8 @@
-import { Container } from "@/ui/container";
 import { client } from "@/sanity/client";
-import { Link } from "@nextui-org/link";
-import { Content } from "@/ui/content";
-import { Metadata } from "next/types";
 import { Card } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
+import { Link } from "@nextui-org/link";
+import { Metadata } from "next/types";
 import { urlFor } from "./sanity/image";
 
 import { PostDeref } from "./post/[slug]/page";
@@ -44,10 +42,13 @@ export default async function Home() {
                   .fit("crop")
                   .auto("format")
                   .url()}
+                alt={post.mainImage.alt}
               />
               <div className="pt-2 text-secondary">
                 {post.categories.map((category) => (
-                  <span className="px-2">{category.title}</span>
+                  <span className="px-2" key={category._id}>
+                    {category.title}
+                  </span>
                 ))}
               </div>
             </Card>
