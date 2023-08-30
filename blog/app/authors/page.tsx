@@ -16,7 +16,8 @@ export default async function Page() {
   return (
     <>
       <div className="pb-2">
-        <h2>Our Authors</h2>
+        <h2>Hello 👋</h2>
+        <h6>Lets meet the Authors of Coasting Along</h6>
       </div>
       {authors.map((author, i) => (
         <div key={author._id} id={author.name}>
