@@ -9,8 +9,13 @@ export function PortableImage({ value }: any) {
     <div className="my-3">
       <LightBoxImage
         alt={""}
-        src={urlFor(value).width(1024).maxHeight(800).fit("crop").auto("format").url()}
-        lightBoxSrc={urlFor(value).fit("crop").auto("format").url()}
+        src={urlFor(value).width(1024).maxHeight(800).auto("format").url()}
+        lightBoxSrc={urlFor(value)
+          .maxWidth(1024)
+          .height(800)
+          .fit("crop")
+          .auto("format")
+          .url()}
         loading="lazy"
       />
       <div className="text-center">{value.alt}</div>

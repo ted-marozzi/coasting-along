@@ -68,7 +68,7 @@ export default async function Page({ params }: RouteParams) {
         <LightBoxImage
           loading="eager"
           src={urlFor(post.mainImage).width(1024).height(400).auto("format").url()}
-          lightBoxSrc={urlFor(post.mainImage).auto("format").url()}
+          lightBoxSrc={urlFor(post.mainImage).height(800).auto("format").url()}
           alt={post.mainImage.alt}
         />
       </div>
@@ -98,7 +98,11 @@ export default async function Page({ params }: RouteParams) {
                 <Avatar
                   isBordered
                   color="secondary"
-                  src={urlFor(author.image.asset).width(256).width(256).url()}
+                  src={urlFor(author.image.asset)
+                    .width(256)
+                    .width(256)
+                    .auto("format")
+                    .url()}
                   alt={author.name}
                 />
               </Link>

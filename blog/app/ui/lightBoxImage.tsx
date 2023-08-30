@@ -3,7 +3,7 @@ import { Image } from "@nextui-org/image";
 import { Modal } from "@nextui-org/modal";
 import { ModalContent } from "@nextui-org/react";
 import { useDisclosure } from "@nextui-org/use-disclosure";
-
+// TODO all urls are auto and pass in explicit width and height
 export function LightBoxImage(props: {
   src: string;
   lightBoxSrc: string;
