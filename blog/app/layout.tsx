@@ -10,7 +10,6 @@ import { Content } from "./ui/content";
 const font = Montserrat({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  console.log(children);
   return (
     <html lang="en" className="light text-foreground bg-background">
       <body className={font.className}>
