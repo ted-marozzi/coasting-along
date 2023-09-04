@@ -58,13 +58,13 @@ export default async function Page({ params }: RouteParams) {
   const multipleAuthors = post.authors.length >= 2;
   return (
     <>
-      <div className="pb-2">
+      <div className="pb-4">
         <h1>{post.title}</h1>
         {post.subheading !== undefined && post.subheading !== "" && (
           <h6>{post.subheading}</h6>
         )}
       </div>
-      <div className="pb-2">
+      <div className="pb-4">
         <LightBoxImage
           loading="eager"
           src={urlFor(post.mainImage).width(1024).height(400).auto("format").url()}
@@ -79,7 +79,7 @@ export default async function Page({ params }: RouteParams) {
       <Row
         mainAxisAlignment="start"
         crossAxisAlignment="end"
-        className={`pb-6 ${multipleAuthors && "px-4"}`}
+        className={`pb-4 ${multipleAuthors && "px-4"}`}
       >
         <AvatarGroup show={post.authors.length >= 2}>
           {post.authors.map((author) => (
