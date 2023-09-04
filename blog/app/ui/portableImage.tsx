@@ -6,7 +6,7 @@ export function PortableImage({ value }: any) {
     return null;
   }
   return (
-    <div className="my-3">
+    <div className="py-6">
       <LightBoxImage
         alt={""}
         src={urlFor(value).width(1024).maxHeight(800).auto("format").url()}

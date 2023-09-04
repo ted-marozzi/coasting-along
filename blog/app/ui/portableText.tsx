@@ -17,9 +17,44 @@ const components: Partial<PortableTextReactComponents> = {
   block: {
     h1: ({ value }) => {
       return value.children.map((title) => (
-        <h1 key={title.text} className="py-2">
+        <h1 key={title.text} className="py-4">
           {title.text}
         </h1>
+      ));
+    },
+    h2: ({ value }) => {
+      return value.children.map((title) => (
+        <h2 key={title.text} className="py-4">
+          {title.text}
+        </h2>
+      ));
+    },
+    h3: ({ value }) => {
+      return value.children.map((title) => (
+        <h3 key={title.text} className="py-4">
+          {title.text}
+        </h3>
+      ));
+    },
+    h4: ({ value }) => {
+      return value.children.map((title) => (
+        <h4 key={title.text} className="py-4">
+          {title.text}
+        </h4>
+      ));
+    },
+    h5: ({ value }) => {
+      return value.children.map((title) => (
+        <h5 key={title.text} className="py-4">
+          {title.text}
+        </h5>
+      ));
+    },
+    h6: ({ value }) => {
+      return value.children.map((title) => (
+        <h6 key={title.text} className="py-4">
+          {title.text}
+        </h6>
       ));
     },
   },

@@ -27,15 +27,17 @@ export default async function Home() {
   );
   return (
     <div>
-      <div className="mx-auto flex justify-between items-center flex-wrap">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-12 place-items-center">
         {posts.map((post) => (
           <Link key={post.title} href={`/post/${post.slug.current}`}>
-            <Card className="px-4 py-2 my-2 bg-secondary bg-opacity-20">
+            <Card className="p-4 bg-secondary bg-opacity-20 flex flex-col justify-between items-between w-80">
               <div className="pb-2 text-secondary">
-                <h6>{post.title}</h6>
+                <h6 className="h-14">{post.title}</h6>
                 <div className="text-xs">{post?.subheading}&nbsp;</div>
               </div>
               <Image
+                width={400}
+                height={200}
                 src={urlFor(post.mainImage)
                   .width(400)
                   .height(200)
