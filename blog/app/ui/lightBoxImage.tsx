@@ -6,6 +6,7 @@ import { useDisclosure } from "@nextui-org/use-disclosure";
 // TODO all urls are auto and pass in explicit width and height
 export function LightBoxImage(props: {
   src: string;
+  className?: string;
   lightBoxSrc: string;
   alt: string;
   loading?: "eager" | "lazy";
@@ -29,7 +30,7 @@ export function LightBoxImage(props: {
         src={props.src}
         onClick={onOpen}
         loading={props.loading}
-        className="cursor-zoom-in"
+        className={`cursor-zoom-in ${props.className}`}
       />
     </>
   );

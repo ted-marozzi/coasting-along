@@ -36,9 +36,6 @@ export default defineType({
           lists: [],
         },
       ],
-      validation: (Rule) => Rule.required(),
-      // @ts-ignore
-      codegen: { required: true },
     }),
   ],
   preview: {

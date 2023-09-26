@@ -2,6 +2,7 @@ import { client } from "@/sanity/client";
 import { urlFor } from "@/sanity/image";
 import { Author } from "@/sanity/types";
 import { LightBoxImage } from "@/ui/lightBoxImage";
+import { Avatar } from "@/ui/avatar";
 import { PortableText } from "@portabletext/react";
 import { Metadata } from "next/types";
 
@@ -11,33 +12,38 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const authors = (await client.fetch<Array<Author>>(`*[_type == "author"]`)).reverse();
+  const mainAuthors = (
+    await client.fetch<Array<Author>>(`*[_type == "author" && name == "Ruby and Ted"]`)
+  )[0];
+
+  const guestAuthors = await client.fetch<Array<Author>>(
+    `*[_type == "author" && name != "Ruby and Ted" && name != "Ruby" && name != "Ted"]`,
+  );
 
   return (
     <>
-      <div className="pb-2">
-        <h2>Hello 👋</h2>
-        <h6>Lets meet the Authors of Coasting Along</h6>
-      </div>
-      {authors.map((author, i) => (
-        <div key={author._id} id={author.name}>
-          <div className="hidden md:flex py-14">
-            {i % 2 === 0 ? (
-              <>
-                <AuthorImage author={author} /> <AuthorText author={author} />
-              </>
-            ) : (
-              <>
-                <AuthorText author={author} /> <AuthorImage author={author} />
-              </>
-            )}
-          </div>
-          <div className="flex flex-col md:hidden py-4">
-            <AuthorText author={author} />
-            <AuthorImage author={author} />
+      <h2 className="p-2">Creators of Coasting Along</h2>
+      <div id="Ruby">
+        <div id="Ted">
+          <div id="Ruby and Ted">
+            <MainAuthorImage author={mainAuthors} width={1000} height={600} />{" "}
+            <AuthorText author={mainAuthors} />
           </div>
         </div>
-      ))}
+      </div>
+      {guestAuthors.length > 0 && (
+        <>
+          <h2 className="p-2">Guests</h2>
+          <div className="flex flex-wrap">
+            {guestAuthors.map((author) => (
+              <div key={author._id} id={author.name} className="p-2 text-center">
+                <GuestAuthorImage author={author} />
+                <h4 className="p-2">{author.name}</h4>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -46,16 +52,16 @@ function AuthorText(props: { author: Author }) {
   return (
     <div className="flex-1 p-2">
       <h4>{props.author.name}</h4>
-      <PortableText value={props.author.bio} />
+      {props.author.bio && <PortableText value={props.author.bio} />}
     </div>
   );
 }
 
-function AuthorImage(props: { author: Author }) {
+function MainAuthorImage(props: { author: Author; width: number; height: number }) {
   return (
     <div className="flex-1 flex justify-center items-center p-2">
       <LightBoxImage
-        src={urlFor(props.author.image).width(400).height(400).url()}
+        src={urlFor(props.author.image).width(props.width).height(props.height).url()}
         lightBoxSrc={urlFor(props.author.image)
           .width(800)
           .height(800)
@@ -64,5 +70,16 @@ function AuthorImage(props: { author: Author }) {
         alt={`${props.author.name}'s Profile`}
       />
     </div>
+  );
+}
+
+function GuestAuthorImage(props: { author: Author }) {
+  return (
+    <LightBoxImage
+      className="rounded-full w-48 h-48"
+      src={urlFor(props.author.image).width(400).height(400).url()}
+      lightBoxSrc={urlFor(props.author.image).width(800).height(800).auto("format").url()}
+      alt={`${props.author.name}'s Profile`}
+    />
   );
 }

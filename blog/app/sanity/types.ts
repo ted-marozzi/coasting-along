@@ -145,7 +145,7 @@ export interface Author extends SanityDocument {
    *
    *
    */
-  bio: Array<SanityKeyed<SanityBlock>>;
+  bio?: Array<SanityKeyed<SanityBlock>>;
 }
 
 /**

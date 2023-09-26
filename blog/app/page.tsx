@@ -33,7 +33,7 @@ export default async function Home() {
             <Card className="p-4 bg-secondary bg-opacity-20 flex flex-col justify-between items-between w-80">
               <div className="pb-2 text-secondary">
                 <h6 className="h-14">{post.title}</h6>
-                <div className="text-xs">{post?.subheading}&nbsp;</div>
+                <div className="text-xs h-8">{post?.subheading}&nbsp;</div>
               </div>
               <Image
                 width={400}
