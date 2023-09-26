@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const mainAuthors = (
+  const mainAuthor = (
     await client.fetch<Array<Author>>(`*[_type == "author" && name == "Ruby and Ted"]`)
   )[0];
 
@@ -26,8 +26,8 @@ export default async function Page() {
       <div id="Ruby">
         <div id="Ted">
           <div id="Ruby and Ted">
-            <MainAuthorImage author={mainAuthors} width={1000} height={600} />{" "}
-            <AuthorText author={mainAuthors} />
+            <MainAuthorImage author={mainAuthor} width={1000} height={600} />{" "}
+            <MainAuthorText author={mainAuthor} />
           </div>
         </div>
       </div>
@@ -48,10 +48,10 @@ export default async function Page() {
   );
 }
 
-function AuthorText(props: { author: Author }) {
+function MainAuthorText(props: { author: Author }) {
   return (
     <div className="flex-1 p-2">
-      <h4>{props.author.name}</h4>
+      <h4 className="p-2">{props.author.name}</h4>
       {props.author.bio && <PortableText value={props.author.bio} />}
     </div>
   );
