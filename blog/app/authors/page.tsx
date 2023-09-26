@@ -22,7 +22,7 @@ export default async function Page() {
 
   return (
     <>
-      <h2 className="p-2">Creators of Coasting Along</h2>
+      <h2 className="py-2">Creators of Coasting Along</h2>
       <div id="Ruby">
         <div id="Ted">
           <div id="Ruby and Ted">
@@ -33,12 +33,12 @@ export default async function Page() {
       </div>
       {guestAuthors.length > 0 && (
         <>
-          <h2 className="p-2">Guests</h2>
+          <h2 className="py-2">Guests</h2>
           <div className="flex flex-wrap">
             {guestAuthors.map((author) => (
-              <div key={author._id} id={author.name} className="p-2 text-center">
+              <div key={author._id} id={author.name} className="py-2 text-center">
                 <GuestAuthorImage author={author} />
-                <h4 className="p-2">{author.name}</h4>
+                <h4 className="py-2">{author.name}</h4>
               </div>
             ))}
           </div>
@@ -50,8 +50,8 @@ export default async function Page() {
 
 function MainAuthorText(props: { author: Author }) {
   return (
-    <div className="flex-1 p-2">
-      <h4 className="p-2">{props.author.name}</h4>
+    <div className="flex-1 py-2">
+      <h4 className="py-2">{props.author.name}</h4>
       {props.author.bio && <PortableText value={props.author.bio} />}
     </div>
   );
@@ -59,7 +59,7 @@ function MainAuthorText(props: { author: Author }) {
 
 function MainAuthorImage(props: { author: Author; width: number; height: number }) {
   return (
-    <div className="flex-1 flex justify-center items-center p-2">
+    <div className="flex-1 flex justify-center items-center py-2">
       <LightBoxImage
         src={urlFor(props.author.image).width(props.width).height(props.height).url()}
         lightBoxSrc={urlFor(props.author.image)
