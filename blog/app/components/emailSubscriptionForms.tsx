@@ -4,16 +4,17 @@ import { useRouter } from "next/navigation";
 export function FloatingEmailSubscriptionForm() {
   const router = useRouter();
   const key = "email-subscription-dismissed-last";
-  const lastDismissed = localStorage?.getItem(key) ?? null;
 
-  if (
-    // process.env.NODE_ENV === "production" && // Uncomment to show in development
-    lastDismissed !== null &&
-    new Date().getMilliseconds() - Date.parse(lastDismissed) < 32 * 24 * 60 * 60 * 1000
-  ) {
-    return <></>;
+  if (typeof localStorage !== undefined) {
+    const lastDismissed = localStorage?.getItem(key) ?? null;
+    if (
+      // process.env.NODE_ENV === "production" && // Uncomment to show in development
+      lastDismissed !== null &&
+      new Date().getMilliseconds() - Date.parse(lastDismissed) < 32 * 24 * 60 * 60 * 1000
+    ) {
+      return <></>;
+    }
   }
-
   return (
     <div className="fixed bottom-10 right-10 z-10 flex flex-col items-end">
       <button
