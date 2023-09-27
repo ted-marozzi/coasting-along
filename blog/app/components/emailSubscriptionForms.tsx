@@ -7,7 +7,7 @@ export function FloatingEmailSubscriptionForm() {
   const lastDismissed = localStorage?.getItem(key) ?? null;
 
   if (
-    process.env.NODE_ENV === "production" &&
+    // process.env.NODE_ENV === "production" && // Uncomment to show in development
     lastDismissed !== null &&
     new Date().getMilliseconds() - Date.parse(lastDismissed) < 32 * 24 * 60 * 60 * 1000
   ) {

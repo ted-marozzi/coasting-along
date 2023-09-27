@@ -31,7 +31,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <Container>
             <Navbar />
-            <Content>{children}</Content>
+            <Content>
+              {children}
+              <div className="flex flex-col items-center py-6">
+                <hr className="border-primary w-full" />
+                <div className="ml-embedded" data-form="1DOqU4" />
+              </div>
+            </Content>
           </Container>
           <FloatingEmailSubscriptionForm />
         </Providers>
