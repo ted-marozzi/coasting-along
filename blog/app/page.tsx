@@ -27,7 +27,7 @@ export default async function Home() {
   );
   return (
     <div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-12 place-items-center">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 place-content-center place-items-center">
         {posts.map((post) => (
           <Link key={post.title} href={`/post/${post.slug.current}`}>
             <Card className="p-4 bg-secondary bg-opacity-20 flex flex-col justify-between items-between w-80">
