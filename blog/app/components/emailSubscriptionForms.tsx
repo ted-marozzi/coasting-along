@@ -17,7 +17,7 @@ export function FloatingEmailSubscriptionForm() {
   }
 
   return (
-    <div className="fixed bottom-10 right-10 z-10 flex flex-col items-end">
+    <div className="fixed bottom-0 right-0 p-4 z-10 flex flex-col items-end">
       <button
         className="translate-y-5 -translate-x-2 z-20 hover:underline"
         onClick={() => {
@@ -28,7 +28,6 @@ export function FloatingEmailSubscriptionForm() {
         <svg
           className="w-3 h-3 fill-secondary"
           version="1.1"
-          id="Capa_1"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 460.775 460.775"
