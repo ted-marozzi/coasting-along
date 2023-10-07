@@ -33,6 +33,7 @@ export function FloatingEmailSubscriptionForm() {
         className="translate-y-5 -translate-x-2 z-20 hover:underline"
         onClick={() => {
           localStorage?.setItem(key, new Date().toString());
+          setHideForm(true);
           router.refresh();
         }}
       >
