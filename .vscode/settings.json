@@ -2,7 +2,10 @@
   "cSpell.words": [
     "astro",
     "codegen",
+    "codepaths",
+    "compat",
     "datetime",
+    "Fmfi",
     "gifs",
     "hotspot",
     "lqip",
@@ -11,6 +14,7 @@
     "oous",
     "portabletext",
     "tailwindcss",
+    "tsbuildinfo",
     "unoptimized"
   ],
   "prettier.documentSelectors": ["**/*.astro"],
