@@ -3,7 +3,6 @@
 import {
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   Navbar as NavbarInternal,
   NavbarMenuToggle,
   NavbarMenuItem,

@@ -7,6 +7,7 @@ import { Container } from "./ui/container";
 import { Content } from "./ui/content";
 import Script from "next/script";
 import { FloatingEmailSubscriptionForm } from "./components/emailSubscriptionForms";
+import { Footer } from "./components/footer";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -30,13 +31,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={font.className}>
         <Providers>
           <Container>
-            <Navbar />
+            <header>
+              <Navbar />
+            </header>
             <Content>
               {children}
-              <div className="flex flex-col items-center py-6">
-                <hr className="border-primary w-full" />
-                <div className="ml-embedded" data-form="1DOqU4" />
-              </div>
+              <Footer />
             </Content>
           </Container>
           <FloatingEmailSubscriptionForm />
