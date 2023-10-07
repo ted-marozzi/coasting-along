@@ -1,11 +1,10 @@
 import { client } from "@/sanity/client";
 import { Card } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import { Metadata } from "next/types";
-import { urlFor } from "./sanity/image";
 
 import { PostDeref } from "./post/[slug]/page";
+import { SanityImage } from "./sanity/image";
 
 export const metadata: Metadata = {
   title: "Coasting Along",
@@ -35,17 +34,12 @@ export default async function Home() {
                 <h6 className="h-14">{post.title}</h6>
                 <div className="text-xs h-8">{post?.subheading}&nbsp;</div>
               </div>
-              <Image
+              <SanityImage
+                source={post.mainImage}
                 width={400}
                 height={200}
-                src={urlFor(post.mainImage)
-                  .width(400)
-                  .height(200)
-                  .fit("crop")
-                  .auto("format")
-                  .url()}
-                loading="eager"
                 alt={post.mainImage.alt}
+                loading="eager"
               />
               <div className="pt-2 text-secondary flex justify-center">
                 {post.categories.map((category) => (

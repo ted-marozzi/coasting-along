@@ -1,23 +1,34 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export function FloatingEmailSubscriptionForm() {
   const router = useRouter();
   const key = "email-subscription-dismissed-last";
-  let lastDismissed = null;
-  if (typeof window !== "undefined") {
-    lastDismissed = window?.localStorage?.getItem(key) ?? null;
-  }
 
-  if (
-    lastDismissed !== null &&
-    new Date().getMilliseconds() - Date.parse(lastDismissed) < 32 * 24 * 60 * 60 * 1000
-  ) {
-    return <></>;
-  }
+  const [hideForm, setHideForm] = useState(true);
+
+  useEffect(() => {
+    let lastDismissed = null;
+
+    if (typeof window !== "undefined") {
+      lastDismissed = window?.localStorage?.getItem(key) ?? null;
+    }
+
+    setHideForm(
+      lastDismissed !== null &&
+        new Date().getMilliseconds() - Date.parse(lastDismissed) <
+          32 * 24 * 60 * 60 * 1000,
+    );
+  }, []);
 
   return (
-    <div className="fixed bottom-0 right-0 p-4 z-10 flex flex-col items-end">
+    <div
+      style={{
+        display: hideForm ? "none" : "",
+      }}
+      className="fixed bottom-0 right-0 p-4 z-10 flex flex-col items-end"
+    >
       <button
         className="translate-y-5 -translate-x-2 z-20 hover:underline"
         onClick={() => {

@@ -1,15 +1,15 @@
 import { CategoryChips } from "@/components/categories";
 import { client } from "@/sanity/client";
-import { urlFor } from "@/sanity/image";
 import type { Author, Category, Post } from "@/sanity/types";
 import { AvatarGroup } from "@/ui/avatar";
-import { LightBoxImage } from "@/ui/lightBoxImage";
+import { SanityImage } from "@/sanity/image";
 import { PortableText } from "@/ui/portableText";
 import { Row } from "@/ui/uiLayout";
 import { Avatar } from "@nextui-org/avatar";
 import { Link } from "@nextui-org/link";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Metadata } from "next/types";
+import { urlFor } from "@/sanity/util";
 
 export type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -18,7 +18,7 @@ export type PostDeref = Omit<Post, "authors" | "categories"> & {
 
 type RouteParams = { params: { slug: string } };
 
-export async function generateStaticParams({ params }: RouteParams) {
+export async function generateStaticParams({}: RouteParams) {
   const posts = await client.fetch<Array<{ slug: { current: string } }>>(
     `*[_type == "post"]{
       slug
@@ -65,10 +65,11 @@ export default async function Page({ params }: RouteParams) {
         )}
       </div>
       <div className="pb-4">
-        <LightBoxImage
+        <SanityImage
           loading="eager"
-          src={urlFor(post.mainImage).width(1024).height(400).auto("format").url()}
-          lightBoxSrc={urlFor(post.mainImage).height(800).auto("format").url()}
+          source={post.mainImage}
+          width={1024}
+          height={400}
           alt={post.mainImage.alt}
         />
       </div>

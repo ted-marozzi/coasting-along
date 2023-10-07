@@ -4,11 +4,13 @@
     "codegen",
     "datetime",
     "hotspot",
+    "lqip",
     "Marozzi",
     "nextui",
     "oous",
     "portabletext",
-    "tailwindcss"
+    "tailwindcss",
+    "unoptimized"
   ],
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {

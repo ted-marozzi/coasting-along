@@ -1,8 +1,6 @@
 import { client } from "@/sanity/client";
-import { urlFor } from "@/sanity/image";
+import { SanityImage } from "@/sanity/image";
 import { Author } from "@/sanity/types";
-import { LightBoxImage } from "@/ui/lightBoxImage";
-import { Avatar } from "@/ui/avatar";
 import { PortableText } from "@portabletext/react";
 import { Metadata } from "next/types";
 
@@ -60,13 +58,10 @@ function MainAuthorText(props: { author: Author }) {
 function MainAuthorImage(props: { author: Author; width: number; height: number }) {
   return (
     <div className="flex-1 flex justify-center items-center py-2">
-      <LightBoxImage
-        src={urlFor(props.author.image).width(props.width).height(props.height).url()}
-        lightBoxSrc={urlFor(props.author.image)
-          .width(800)
-          .height(800)
-          .auto("format")
-          .url()}
+      <SanityImage
+        source={props.author.image}
+        width={props.width}
+        height={props.height}
         alt={`${props.author.name}'s Profile`}
       />
     </div>
@@ -75,10 +70,10 @@ function MainAuthorImage(props: { author: Author; width: number; height: number 
 
 function GuestAuthorImage(props: { author: Author }) {
   return (
-    <LightBoxImage
-      className="rounded-full w-48 h-48"
-      src={urlFor(props.author.image).width(400).height(400).url()}
-      lightBoxSrc={urlFor(props.author.image).width(800).height(800).auto("format").url()}
+    <SanityImage
+      source={props.author.image}
+      width={400}
+      height={400}
       alt={`${props.author.name}'s Profile`}
     />
   );
