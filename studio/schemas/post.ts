@@ -83,6 +83,9 @@ export default defineType({
       name: "body",
       title: "Body",
       type: "blockContent",
+      options: {
+        spellCheck: true,
+      },
       validation: (Rule) => Rule.required(),
       // @ts-ignore
       codegen: { required: true },
