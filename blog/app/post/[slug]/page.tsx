@@ -69,7 +69,7 @@ export default async function Page({ params }: RouteParams) {
           loading="eager"
           source={post.mainImage}
           width={1024}
-          height={400}
+          height={500}
           alt={post.mainImage.alt}
         />
       </div>
