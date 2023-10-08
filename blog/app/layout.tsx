@@ -14,11 +14,25 @@ const font = Montserrat({ subsets: ["latin"] });
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="light text-foreground bg-background">
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4754300691900449"
-        crossOrigin="anonymous"
-      />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-HW25J4MSG6" />
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <Script id="google-analytics-script">
+            {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HW25J4MSG6');
+            `}
+          </Script>
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4754300691900449"
+            crossOrigin="anonymous"
+          />
+        </>
+      )}
       <Script id="mailer-lite-script">
         {`
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
@@ -28,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     ml('account', '616096');
 `}
       </Script>
+
       <body className={font.className}>
         <Providers>
           <Container>
