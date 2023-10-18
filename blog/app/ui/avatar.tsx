@@ -10,7 +10,7 @@ export function AvatarGroup(props: AvatarGroupProps & { show: boolean }) {
     return <div>{props.children}</div>;
   }
 
-  return <AvatarGroupInternal {...{ ...props, show: undefined }} size="lg" />;
+  return <AvatarGroupInternal {...{ ...props, show: undefined }} />;
 }
 
 export const Avatar = AvatarInternal;

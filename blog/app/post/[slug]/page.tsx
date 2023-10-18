@@ -4,12 +4,13 @@ import type { Author, Category, Post } from "@/sanity/types";
 import { AvatarGroup } from "@/ui/avatar";
 import { SanityImage } from "@/sanity/image";
 import { PortableText } from "@/ui/portableText";
-import { Row } from "@/ui/uiLayout";
+import { Column, Row } from "@/ui/uiLayout";
 import { Avatar } from "@nextui-org/avatar";
 import { Link } from "@nextui-org/link";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Metadata } from "next/types";
 import { urlFor } from "@/sanity/util";
+import { intlFormatDistance } from "date-fns";
 
 export type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -73,43 +74,42 @@ export default async function Page({ params }: RouteParams) {
           alt={post.mainImage.alt}
         />
       </div>
-      <div className="pb-2">
-        <CategoryChips categories={post.categories} variant="flat" />
-      </div>
-      <div className="pb-2">{localDate.toDateString()}</div>
-      <Row
-        mainAxisAlignment="start"
-        crossAxisAlignment="end"
-        className={`pb-4 ${multipleAuthors && "px-4"}`}
-      >
-        <AvatarGroup show={post.authors.length >= 2}>
-          {post.authors.map((author) => (
-            <Tooltip
-              content={author.name}
-              key={author._id}
-              placement="bottom"
-              classNames={{
-                base: "bg-secondary bg-opacity-20 text-secondary",
-              }}
-            >
-              <Link
-                href={`/authors#${author.name}`}
-                className="hover:z-10 hover:opacity-90"
+      <Row mainAxisAlignment="start" crossAxisAlignment="stretch" className="pb-4">
+        <div className="px-4">
+          <AvatarGroup show={multipleAuthors} size="lg">
+            {post.authors.map((author) => (
+              <Tooltip
+                content={author.name}
+                key={author._id}
+                placement={multipleAuthors ? "bottom-end" : "bottom"}
+                classNames={{
+                  base: "bg-secondary bg-opacity-20 text-secondary ",
+                }}
               >
-                <Avatar
-                  isBordered
-                  color="secondary"
-                  src={urlFor(author.image.asset)
-                    .width(256)
-                    .width(256)
-                    .auto("format")
-                    .url()}
-                  alt={author.name}
-                />
-              </Link>
-            </Tooltip>
-          ))}
-        </AvatarGroup>
+                <Link
+                  href={`/authors#${author.name}`}
+                  className="hover:z-10 hover:opacity-100"
+                >
+                  <Avatar
+                    isBordered
+                    color="secondary"
+                    size="lg"
+                    src={urlFor(author.image.asset)
+                      .width(256)
+                      .width(256)
+                      .auto("format")
+                      .url()}
+                    alt={author.name}
+                  />
+                </Link>
+              </Tooltip>
+            ))}
+          </AvatarGroup>
+        </div>
+        <Column mainAxisAlignment="space-between">
+          <CategoryChips categories={post.categories} variant="flat" />
+          <span>Updated {intlFormatDistance(localDate, new Date())}</span>
+        </Column>
       </Row>
       <div className="py-4">
         <PortableText value={post.body} />
