@@ -10,7 +10,7 @@ import { Link } from "@nextui-org/link";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Metadata } from "next/types";
 import { urlFor } from "@/sanity/util";
-import { intlFormatDistance } from "date-fns";
+import { LastUpdated } from "@/components/lastUpdated";
 
 export type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -55,7 +55,7 @@ export default async function Page({ params }: RouteParams) {
   }`,
     { slug: params.slug },
   );
-  const localDate = new Date(post._updatedAt);
+  const lastUpdated = new Date(post._updatedAt);
   const multipleAuthors = post.authors.length >= 2;
   return (
     <>
@@ -108,7 +108,7 @@ export default async function Page({ params }: RouteParams) {
         </div>
         <Column mainAxisAlignment="space-between">
           <CategoryChips categories={post.categories} variant="flat" />
-          <span>Updated {intlFormatDistance(localDate, new Date())}</span>
+          <LastUpdated date={lastUpdated} />
         </Column>
       </Row>
       <div className="py-4">
