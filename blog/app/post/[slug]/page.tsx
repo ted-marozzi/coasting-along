@@ -19,6 +19,8 @@ export type PostDeref = Omit<Post, "authors" | "categories"> & {
 
 type RouteParams = { params: { slug: string } };
 
+export const runtime = "edge";
+
 export async function generateStaticParams({}: RouteParams) {
   const posts = await client.fetch<Array<{ slug: { current: string } }>>(
     `*[_type == "post"]{
