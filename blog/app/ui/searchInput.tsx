@@ -2,20 +2,22 @@
 import { Autocomplete, AutocompleteItem, Link } from "@nextui-org/react";
 import { SearchIcon } from "./icons";
 import { useAsyncList } from "@react-stately/data";
-
-import { PostSearchResult, searchPosts } from "@/actions/sanity";
+import type { PostSearchResult } from "@/api/search/route";
 
 export function SearchInput() {
   const list = useAsyncList<PostSearchResult>({
     async load({ filterText }) {
       try {
-        const result = await searchPosts(filterText);
-        console.log("[search]", filterText, result);
+        const response = await fetch(
+          `${window.location.origin}/api/search?query=${filterText}`,
+        );
+        const json = await response.json();
+        console.info("[search]", response, json);
         return {
-          items: result,
+          items: json.results,
         };
       } catch (error) {
-        console.log("[search]", error);
+        console.error("[search]", error);
         return { items: [] };
       }
     },

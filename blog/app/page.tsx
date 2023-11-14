@@ -2,8 +2,7 @@ import { client } from "@/sanity/client";
 import { Card } from "@nextui-org/card";
 import { Link } from "@nextui-org/link";
 import { Metadata } from "next/types";
-
-import { PostDeref } from "./post/[slug]/page";
+import type { PostDeref } from "./post/[slug]/page";
 import { SanityImage } from "./sanity/image";
 
 export const metadata: Metadata = {
