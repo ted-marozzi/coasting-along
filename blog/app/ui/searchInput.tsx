@@ -36,9 +36,15 @@ export function SearchInput() {
       allowsCustomValue={true}
       popoverProps={{ radius: "sm" }}
       inputProps={{ suppressHydrationWarning: true }}
+      selectedKey={null}
     >
       {(post) => (
-        <AutocompleteItem key={post.title}>
+        <AutocompleteItem
+          key={post.title}
+          onClick={() => {
+            window.location.href = window.location.origin + `/post/${post.slug.current}`;
+          }}
+        >
           <Link href={`/post/${post.slug.current}`} color="secondary" className="w-full">
             {post.title}
           </Link>
