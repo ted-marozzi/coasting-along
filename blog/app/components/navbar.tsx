@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { Icon } from "../ui/icons";
 import { Link } from "@nextui-org/link";
+import { SearchInput } from "@/ui/searchInput";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,16 +23,19 @@ export function Navbar() {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       classNames={{
-        wrapper: "justify-center sm:justify-between",
+        wrapper: "justify-center sm:justify-between mt-3",
       }}
     >
-      <Link href={"/"} underline="hover">
+      <Link href="/" underline="hover">
         <NavbarBrand>
           <Icon className="p-3" />
           <h3 className="text-primary">Coasting Along</h3>
         </NavbarBrand>
       </Link>
-      <NavbarContent className="sm:flex sm:!justify-end hidden">
+      <NavbarContent className="md:flex md:!justify-end hidden">
+        <NavbarMenuItem>
+          <SearchInput />
+        </NavbarMenuItem>
         {menuItems.map((item) => (
           <NavbarMenuItem key={`${item.name}`}>
             <Link href={item.href} color="secondary" underline="hover">
@@ -40,7 +44,10 @@ export function Navbar() {
           </NavbarMenuItem>
         ))}
       </NavbarContent>
-      <NavbarMenu className="hidden sm:flex">
+      <NavbarMenu className="hidden md:flex">
+        <NavbarMenuItem className="flex justify-center p-3">
+          <SearchInput />
+        </NavbarMenuItem>
         {menuItems.map((item) => (
           <NavbarMenuItem key={`${item.name}`} className="flex justify-center p-3">
             <Link href={item.href} color="secondary" underline="hover" size="lg">
@@ -51,7 +58,7 @@ export function Navbar() {
       </NavbarMenu>
       <NavbarMenuToggle
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="sm:hidden"
+        className="md:hidden"
       />
     </NavbarInternal>
   );

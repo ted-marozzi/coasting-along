@@ -16,7 +16,7 @@ export default async function Home() {
   const posts = await client.fetch<
     Array<Pick<PostDeref, "mainImage" | "title" | "slug" | "categories" | "subheading">>
   >(
-    `*[_type == "post"]{
+    `*[_type == "post"] | order(_createdAt desc) {
       slug,
       title,
       mainImage,
