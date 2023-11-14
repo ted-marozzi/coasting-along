@@ -12,7 +12,6 @@ export function SearchInput() {
           `${window.location.origin}/api/search?query=${filterText}`,
         );
         const json = await response.json();
-        console.info("[search]", response, json);
         return {
           items: json.results,
         };

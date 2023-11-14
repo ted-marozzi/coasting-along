@@ -20,7 +20,6 @@ export async function GET(request: Request) {
     }`;
 
   const results = await client.fetch<Array<PostSearchResult>>(sanityQuery);
-  console.info("[search]", sanityQuery, results);
 
   return Response.json({ results });
 }
