@@ -8,9 +8,16 @@ import { PostSearchResult, searchPosts } from "@/actions/sanity";
 export function SearchInput() {
   const list = useAsyncList<PostSearchResult>({
     async load({ filterText }) {
-      return {
-        items: await searchPosts(filterText),
-      };
+      try {
+        const result = await searchPosts(filterText);
+        console.log("[search]", filterText, result);
+        return {
+          items: result,
+        };
+      } catch (error) {
+        console.log("[search]", error);
+        return { items: [] };
+      }
     },
   });
   return (

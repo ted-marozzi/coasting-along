@@ -20,5 +20,7 @@ export async function searchPosts(query?: string): Promise<Array<PostSearchResul
 
   const results = await client.fetch<Array<PostSearchResult>>(sanityQuery);
 
+  console.log("[search]", sanityQuery, results);
+
   return results;
 }
