@@ -11,6 +11,7 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { Metadata } from "next/types";
 import { urlFor } from "@/sanity/util";
 import { LastUpdated } from "@/components/lastUpdated";
+import { notFound } from "next/navigation";
 
 export type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -42,6 +43,10 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
     { slug: params.slug },
   );
 
+  if (post === null) {
+    return {};
+  }
+
   return {
     title: `${post.title} | Coasting Along`,
     description: post.metaDescription,
@@ -57,8 +62,14 @@ export default async function Page({ params }: RouteParams) {
   }`,
     { slug: params.slug },
   );
+
+  if (post === null) {
+    notFound();
+  }
+
   const lastUpdated = new Date(post._updatedAt);
   const multipleAuthors = post.authors.length >= 2;
+
   return (
     <>
       <div className="pb-4">
