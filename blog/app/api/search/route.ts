@@ -17,7 +17,7 @@ export async function GET(request: Request) {
       title,
       slug,
       _score,
-    }`;
+    }[_score > 0]`;
 
   const results = await client.fetch<Array<PostSearchResult>>(sanityQuery);
 
