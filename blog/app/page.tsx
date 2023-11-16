@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     "Join Ruby and Ted on Coasting Along as they explore Australia from coast to coaster. Discover travel adventures, remote work tips, surfing spots, and mouth-watering food experiences.",
 };
 
+const route = "[/]";
+
 export default async function Home() {
   const posts = await client.fetch<
     Array<Pick<PostDeref, "mainImage" | "title" | "slug" | "categories" | "subheading">>
@@ -23,6 +25,9 @@ export default async function Home() {
       categories[]->
     }`,
   );
+
+  console.debug(route, "rendering");
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 place-content-center place-items-center">
