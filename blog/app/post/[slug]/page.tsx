@@ -18,9 +18,21 @@ export type PostDeref = Omit<Post, "authors" | "categories"> & {
   categories: Array<Category>;
 };
 
+export const runtime = "edge";
 export const dynamicParams = false;
 
 type RouteParams = { params: { slug: string } };
+
+export async function generateStaticParams() {
+  const posts = await client.fetch<Array<{ slug: { current: string } }>>(
+    `*[_type == "post"]{
+      slug
+    }`,
+  );
+  return posts.map((post) => ({
+    slug: post.slug.current,
+  }));
+}
 
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
   const post = await client.fetch<{ title: string; metaDescription: string }>(
