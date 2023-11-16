@@ -23,8 +23,8 @@
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.5",
     "next": "^14.0.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@portabletext/types": "^2.0.8",
@@ -38,8 +38,8 @@
     "postcss": "^8.4.31",
     "prettier": "^2.8.8",
     "sanity-codegen": "^0.9.8",
-    "tailwindcss": "3.3.5",
-    "typescript": "5.2.2"
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
   },
   "prettier": {
     "printWidth": 90,
