@@ -25,7 +25,7 @@ export async function GET(request: Request) {
 
   const results = await client.fetch<Array<PostSearchResult>>(sanityQuery);
 
-  console.debug(route, `query ${query} returning ${results.length} results`);
+  console.debug(route, `query "${query}" returning ${results.length} results`);
 
   return Response.json({ results });
 }
