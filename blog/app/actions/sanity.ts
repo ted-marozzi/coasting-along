@@ -1,14 +1,10 @@
+"use server";
 import { client } from "@/sanity/client";
+
 export type PostSearchResult = Pick<any, "title" | "slug">;
+const route = `[actions/search]`;
 
-export const runtime = "edge";
-
-const route = `[api/search]`;
-
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const query = searchParams.get("query") ?? undefined;
-
+export async function search(query: string): Promise<Array<PostSearchResult>> {
   console.debug(route, `query ${query}`);
 
   const score = `boost(title match "*${query}*", 4), subheading match "*${query}*", metaDescription match "*${query}*", pt::text(body) match "*${query}*"`;
@@ -27,5 +23,5 @@ export async function GET(request: Request) {
 
   console.debug(route, `query "${query}" returning ${results.length} results`);
 
-  return Response.json({ results });
+  return results;
 }

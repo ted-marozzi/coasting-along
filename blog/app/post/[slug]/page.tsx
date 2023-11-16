@@ -87,7 +87,8 @@ export default async function Page({ params }: RouteParams) {
                 key={author._id}
                 placement={multipleAuthors ? "bottom-end" : "bottom"}
                 classNames={{
-                  base: "bg-secondary bg-opacity-20 text-secondary ",
+                  base: "text-secondary",
+                  content: "bg-secondary bg-opacity-20 ",
                 }}
               >
                 <Link

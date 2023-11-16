@@ -13,8 +13,8 @@ import {
 } from "@nextui-org/react";
 import { CloseButton, SearchIcon } from "./icons";
 import { useAsyncList } from "@react-stately/data";
-import type { PostSearchResult } from "@/api/search/route";
 import { useEffect, useRef } from "react";
+import { PostSearchResult, search } from "@/actions/sanity";
 
 export function SearchInput() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -22,12 +22,9 @@ export function SearchInput() {
   const list = useAsyncList<PostSearchResult>({
     async load({ filterText }) {
       try {
-        const response = await fetch(
-          `${window.location.origin}/api/search?query=${filterText}`,
-        );
-        const json = await response.json();
+        const results = await search(filterText ?? "");
         return {
-          items: json.results,
+          items: results,
         };
       } catch (error) {
         console.error("[search]", error);
