@@ -18,21 +18,9 @@ export type PostDeref = Omit<Post, "authors" | "categories"> & {
   categories: Array<Category>;
 };
 
-type RouteParams = { params: { slug: string } };
-
 export const runtime = "edge";
 
-export async function generateStaticParams({}: RouteParams) {
-  const posts = await client.fetch<Array<{ slug: { current: string } }>>(
-    `*[_type == "post"]{
-      slug
-    }`,
-  );
-
-  return posts.map((post) => ({
-    slug: post.slug.current,
-  }));
-}
+type RouteParams = { params: { slug: string } };
 
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
   const post = await client.fetch<{ title: string; metaDescription: string }>(
@@ -54,6 +42,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 }
 
 export default async function Page({ params }: RouteParams) {
+  const route = `[post/${params.slug}]`;
   const post = await client.fetch<PostDeref>(
     `*[_type == "post" && slug.current == $slug][0]{
     ...,
@@ -64,8 +53,10 @@ export default async function Page({ params }: RouteParams) {
   );
 
   if (post === null) {
+    console.debug(route, `page not found`);
     notFound();
   }
+  console.debug(route, `rendering`);
 
   const lastUpdated = new Date(post._updatedAt);
   const multipleAuthors = post.authors.length >= 2;
