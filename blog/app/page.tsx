@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 
 const route = "[/]";
 
+export const runtime = "edge";
+
 export default async function Home() {
   const posts = await client.fetch<
     Array<Pick<PostDeref, "mainImage" | "title" | "slug" | "categories" | "subheading">>
