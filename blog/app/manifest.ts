@@ -6,7 +6,6 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Coasting Along",
     description:
       "Join Ruby and Ted on Coasting Along as they explore Australia from coast to coaster. Discover travel adventures, remote work tips, surfing spots, and mouth-watering food experiences.",
-    theme_color: "#fa39da",
     background_color: "#f6efdc",
     display: "fullscreen",
     start_url: "/",
