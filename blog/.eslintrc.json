@@ -3,5 +3,6 @@
   "plugins": ["next-on-pages"],
   "rules": {
     "no-unused-vars": "warn"
-  }
+  },
+  "ignorePatterns": ["public/"]
 }
