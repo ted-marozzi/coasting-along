@@ -1,7 +1,6 @@
 "use client";
 import { Link } from "@nextui-org/react";
 import { PushNotificationsButton } from "./pushNotificationsButton";
-import { Row } from "@/ui/uiLayout";
 
 export function Footer() {
   return (

@@ -1,5 +1,4 @@
 "use client";
-
 import { initializeApp } from "firebase/app";
 import { getToken } from "firebase/messaging";
 import { getMessaging } from "firebase/messaging";
@@ -25,7 +24,11 @@ export async function initialize() {
     console.warn(logging, "not running in browser");
     return;
   }
-  await registerServiceWorker();
+  try {
+    await registerServiceWorker();
+  } catch (error) {
+    console.error(logging, "error registering service worker", error);
+  }
 }
 
 async function registerServiceWorker() {
