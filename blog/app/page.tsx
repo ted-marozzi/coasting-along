@@ -1,10 +1,10 @@
 import { client } from "@/sanity/client";
 import { Card } from "@nextui-org/card";
 import { Link } from "@nextui-org/link";
-import type { PostDeref } from "./post/[slug]/page";
-import { SanityImage } from "./sanity/image";
+import type { PostDeref } from "@/post/[slug]/page";
+import { SanityImage } from "@/sanity/image";
 import { Metadata } from "next";
-import { pwaMetadata } from "./layout";
+import { pwaMetadata } from "@/metaData";
 
 const route = "[/]";
 

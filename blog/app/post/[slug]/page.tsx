@@ -12,7 +12,7 @@ import { Metadata } from "next/types";
 import { urlFor } from "@/sanity/util";
 import { LastUpdated } from "@/components/lastUpdated";
 import { notFound } from "next/navigation";
-import { pwaMetadata } from "@/layout";
+import { pwaMetadata } from "@/metaData";
 
 export type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;

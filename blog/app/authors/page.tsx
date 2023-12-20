@@ -1,4 +1,4 @@
-import { pwaMetadata } from "@/layout";
+import { pwaMetadata } from "@/metaData";
 import { client } from "@/sanity/client";
 import { SanityImage } from "@/sanity/image";
 import { Author } from "@/sanity/types";
