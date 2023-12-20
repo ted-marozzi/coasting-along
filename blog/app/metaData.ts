@@ -7,6 +7,7 @@ export const baseUrl =
 
 // For some reason this doesn't work if placed in this root layout metadata
 // so we import it into the page metadata's
+// Maybe because we have the local icon at the root level overriding it
 export const pwaMetadata: Metadata = {
   appleWebApp: {
     capable: true,
