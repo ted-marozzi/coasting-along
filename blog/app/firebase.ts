@@ -4,6 +4,7 @@ import { Messaging, getToken } from "firebase/messaging";
 import { getMessaging } from "firebase/messaging";
 
 // Keep in sync with blog/public/firebase-messaging-sw.js
+/* cSpell:disable */
 const firebaseConfig = {
   apiKey: "AIzaSyDb3EMcaup586c9eDfAbhqnaiDNnj2VMFE",
   authDomain: "coasting-along.firebaseapp.com",
@@ -12,6 +13,7 @@ const firebaseConfig = {
   messagingSenderId: "186959953999",
   appId: "1:186959953999:web:05c44fab5fb77c0fa26a3a",
 };
+/* cSpell:enable */
 
 const logging = "[firebase/messaging]";
 
@@ -68,10 +70,12 @@ export async function requestMessagingPermission(): Promise<boolean> {
 
     case "granted":
       console.info(logging, "notification permission granted");
+      /* cSpell:disable */
       const token = await getToken(messaging, {
         vapidKey:
           "BPIAV7RZrW0zofnXKk88EmYsgCli3UMkJ7q3LpV6Pgl0COLvSZjpfdjJIZxY42nR0UtvFWrkmTbpC7-G42_Tfu0",
       });
+      /* cSpell:enable */
       console.info(logging, token);
 
       return true;
