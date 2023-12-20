@@ -8,6 +8,7 @@ import { Content } from "./ui/content";
 import Script from "next/script";
 import { FloatingEmailSubscriptionForm } from "./components/emailSubscriptionForms";
 import { Footer } from "./components/footer";
+import "./firebase";
 
 const font = Montserrat({ subsets: ["latin"] });
 

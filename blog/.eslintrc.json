@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:next-on-pages/recommended"],
+  "extends": ["next/babel", "next/core-web-vitals", "plugin:next-on-pages/recommended"],
   "plugins": ["next-on-pages"],
   "rules": {
     "no-unused-vars": "warn"

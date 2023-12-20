@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   title: "Coasting Along",
   description:
     "Join Ruby and Ted on Coasting Along as they explore Australia from coast to coaster. Discover travel adventures, remote work tips, surfing spots, and mouth-watering food experiences.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    shortcut: "image-icon.png",
+    apple: "image-icon-background.png",
+    icon: "image-icon.png",
+  },
 };
 
 const route = "[/]";
