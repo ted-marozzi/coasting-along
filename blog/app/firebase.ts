@@ -20,20 +20,23 @@ const logging = "[firebase/messaging]";
 let app: FirebaseApp | undefined = undefined;
 let messaging: Messaging | undefined = undefined;
 
-initialize();
+const isInitialized = initialize();
 
-export async function initialize() {
+export async function initialize(): Promise<boolean> {
   if (typeof window === "undefined") {
     console.warn(logging, "not running in browser");
-    return;
+    return false;
   }
+
   try {
     app = initializeApp(firebaseConfig);
     messaging = getMessaging(app);
     await registerServiceWorker();
   } catch (error) {
     console.error(logging, "error registering service worker", error);
+    return false;
   }
+  return true;
 }
 
 async function registerServiceWorker() {
@@ -51,13 +54,28 @@ async function registerServiceWorker() {
 }
 
 export async function requestMessagingPermission(): Promise<boolean> {
-  console.info(logging, "requesting notification permission");
-  if (!("Notification" in window) || !Notification || !messaging) {
-    console.warn(logging, "notification api not supported");
+  if (!(await isInitialized)) {
     return false;
   }
 
-  const permission = await Notification.requestPermission();
+  console.info(logging, "requesting notification permission");
+  if (!("Notification" in window) || !Notification || !messaging) {
+    console.warn(
+      logging,
+      "notification api not supported",
+      !("Notification" in window),
+      !Notification,
+      !messaging,
+    );
+    return false;
+  }
+
+  let permission: NotificationPermission | undefined;
+  try {
+    permission = await Notification.requestPermission();
+  } catch (error) {
+    return false;
+  }
 
   switch (permission) {
     case "default":
