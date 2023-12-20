@@ -1,6 +1,6 @@
 "use client";
-import { initializeApp } from "firebase/app";
-import { getToken } from "firebase/messaging";
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { Messaging, getToken } from "firebase/messaging";
 import { getMessaging } from "firebase/messaging";
 
 // Keep in sync with blog/public/firebase-messaging-sw.js
@@ -14,9 +14,10 @@ const firebaseConfig = {
 };
 
 const logging = "[firebase/messaging]";
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
+
+let app: FirebaseApp | undefined = undefined;
+let messaging: Messaging | undefined = undefined;
+
 initialize();
 
 export async function initialize() {
@@ -25,6 +26,8 @@ export async function initialize() {
     return;
   }
   try {
+    app = initializeApp(firebaseConfig);
+    messaging = getMessaging(app);
     await registerServiceWorker();
   } catch (error) {
     console.error(logging, "error registering service worker", error);
@@ -33,20 +36,21 @@ export async function initialize() {
 
 async function registerServiceWorker() {
   console.log(logging, "registering service worker");
-
-  if (!navigator || !("serviceWorker" in navigator)) {
+  if (!window.navigator || !("serviceWorker" in window.navigator)) {
     console.warn(logging, "service worker not supported");
     return;
   }
 
-  const response = await navigator.serviceWorker.register("./firebase-messaging-sw.js");
+  const response = await window.navigator.serviceWorker.register(
+    "./firebase-messaging-sw.js",
+  );
 
   console.log(logging, "response", response);
 }
 
 export async function requestMessagingPermission(): Promise<boolean> {
   console.info(logging, "requesting notification permission");
-  if (!("Notification" in window) || !Notification) {
+  if (!("Notification" in window) || !Notification || !messaging) {
     console.warn(logging, "notification api not supported");
     return false;
   }
