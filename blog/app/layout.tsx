@@ -55,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Footer />
             </Content>
           </Container>
+
           <FloatingEmailSubscriptionForm />
         </Providers>
       </body>

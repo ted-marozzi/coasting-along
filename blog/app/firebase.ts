@@ -26,7 +26,6 @@ export async function initialize() {
     return;
   }
   await registerServiceWorker();
-  await requestMessagingPermission();
 }
 
 async function registerServiceWorker() {
@@ -42,11 +41,11 @@ async function registerServiceWorker() {
   console.log(logging, "response", response);
 }
 
-async function requestMessagingPermission() {
+export async function requestMessagingPermission(): Promise<boolean> {
   console.info(logging, "requesting notification permission");
   if (!("Notification" in window) || !Notification) {
     console.warn(logging, "notification api not supported");
-    return;
+    return false;
   }
 
   const permission = await Notification.requestPermission();
@@ -54,11 +53,11 @@ async function requestMessagingPermission() {
   switch (permission) {
     case "default":
       console.warn(logging, "notification permission is not yet set and hence is denied");
-      return;
+      return false;
 
     case "denied":
       console.warn(logging, "notification permission denied");
-      return;
+      return false;
 
     case "granted":
       console.info(logging, "notification permission granted");
@@ -68,6 +67,6 @@ async function requestMessagingPermission() {
       });
       console.info(logging, token);
 
-      return;
+      return true;
   }
 }
