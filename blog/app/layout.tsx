@@ -9,6 +9,23 @@ import Script from "next/script";
 import { FloatingEmailSubscriptionForm } from "@/components/emailSubscriptionForms";
 import { Footer } from "@/components/footer";
 import "@/firebase";
+import { Metadata } from "next";
+import { baseUrl } from "./base";
+
+export const metadata: Metadata = {
+  title: "Coasting Along",
+  description:
+    "Join Ruby and Ted on Coasting Along as they explore Australia from coast to coaster. Discover travel adventures, remote work tips, surfing spots, and mouth-watering food experiences.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    shortcut: `${baseUrl}/image-icon.png`,
+    apple: `${baseUrl}/image-icon-background.png`,
+    icon: `${baseUrl}/image-icon.png`,
+  },
+};
 
 const font = Montserrat({ subsets: ["latin"] });
 

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { client } from "@/sanity/client";
-import { baseUrl } from "@/metaData";
+import { baseUrl } from "@/base";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = (
