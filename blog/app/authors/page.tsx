@@ -1,3 +1,4 @@
+import { pwaMetadata } from "@/layout";
 import { client } from "@/sanity/client";
 import { SanityImage } from "@/sanity/image";
 import { Author } from "@/sanity/types";
@@ -7,6 +8,7 @@ import { Metadata } from "next/types";
 export const metadata: Metadata = {
   title: "Authors | Coasting Along",
   description: "The Coasting Along author team",
+  ...pwaMetadata,
 };
 
 export default async function Page() {

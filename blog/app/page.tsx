@@ -1,28 +1,21 @@
 import { client } from "@/sanity/client";
 import { Card } from "@nextui-org/card";
 import { Link } from "@nextui-org/link";
-import { Metadata } from "next/types";
 import type { PostDeref } from "./post/[slug]/page";
 import { SanityImage } from "./sanity/image";
+import { Metadata } from "next";
+import { pwaMetadata } from "./layout";
+
+const route = "[/]";
+
+export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "Coasting Along",
   description:
     "Join Ruby and Ted on Coasting Along as they explore Australia from coast to coaster. Discover travel adventures, remote work tips, surfing spots, and mouth-watering food experiences.",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-  },
-  icons: {
-    shortcut: "image-icon.png",
-    apple: "image-icon-background.png",
-    icon: "image-icon.png",
-  },
+  ...pwaMetadata,
 };
-
-const route = "[/]";
-
-export const runtime = "edge";
 
 export default async function Home() {
   const posts = await client.fetch<

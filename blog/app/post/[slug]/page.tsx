@@ -12,6 +12,7 @@ import { Metadata } from "next/types";
 import { urlFor } from "@/sanity/util";
 import { LastUpdated } from "@/components/lastUpdated";
 import { notFound } from "next/navigation";
+import { pwaMetadata } from "@/layout";
 
 export type PostDeref = Omit<Post, "authors" | "categories"> & {
   authors: Array<Author>;
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   return {
     title: `${post.title} | Coasting Along`,
     description: post.metaDescription,
+    ...pwaMetadata,
   };
 }
 

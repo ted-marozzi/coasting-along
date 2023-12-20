@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import { client } from "./sanity/client";
-
-export const baseUrl = "https://www.coastingalong.blog";
+import { baseUrl } from "./layout";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = (
