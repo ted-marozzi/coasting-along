@@ -56,7 +56,12 @@ async function registerServiceWorker() {
 }
 
 function checkNotificationsEnvironment() {
-  if (!("Notification" in window) || !Notification || !messaging) {
+  if (
+    typeof window === "undefined" ||
+    !("Notification" in window) ||
+    !Notification ||
+    !messaging
+  ) {
     console.warn(
       logging,
       "notification api not supported",
