@@ -33,7 +33,7 @@ export async function initialize(): Promise<boolean> {
     messaging = getMessaging(app);
     await registerServiceWorker();
   } catch (error) {
-    console.error(logging, "error registering service worker", error);
+    console.error(logging, "error initializing messaging worker", error);
     return false;
   }
 
@@ -43,7 +43,12 @@ export async function initialize(): Promise<boolean> {
 async function registerServiceWorker() {
   console.log(logging, "registering service worker");
 
-  if (!window.navigator || !("serviceWorker" in window.navigator)) {
+  if (
+    typeof window === "undefined" ||
+    !window.navigator ||
+    !window.navigator.serviceWorker ||
+    !window.navigator.serviceWorker.register
+  ) {
     console.warn(logging, "service worker not supported");
     return;
   }
@@ -56,19 +61,8 @@ async function registerServiceWorker() {
 }
 
 function checkNotificationsEnvironment() {
-  if (
-    typeof window === "undefined" ||
-    !("Notification" in window) ||
-    !Notification ||
-    !messaging
-  ) {
-    console.warn(
-      logging,
-      "notification api not supported",
-      !("Notification" in window),
-      !Notification,
-      !messaging,
-    );
+  if (typeof window === "undefined" || !window.Notification || !messaging) {
+    console.warn(logging, "notifications not supported or messaging not initialized");
     return false;
   }
 
@@ -82,7 +76,7 @@ export function isNotificationsEnabled(): boolean {
     return false;
   }
 
-  return Notification.permission === "granted";
+  return window.Notification.permission === "granted";
 }
 
 export async function requestMessagingPermission(): Promise<boolean> {
