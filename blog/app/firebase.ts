@@ -36,11 +36,13 @@ export async function initialize(): Promise<boolean> {
     console.error(logging, "error registering service worker", error);
     return false;
   }
+
   return true;
 }
 
 async function registerServiceWorker() {
   console.log(logging, "registering service worker");
+
   if (!window.navigator || !("serviceWorker" in window.navigator)) {
     console.warn(logging, "service worker not supported");
     return;
@@ -53,12 +55,7 @@ async function registerServiceWorker() {
   console.log(logging, "response", response);
 }
 
-export async function requestMessagingPermission(): Promise<boolean> {
-  if (!(await isInitialized)) {
-    return false;
-  }
-
-  console.info(logging, "requesting notification permission");
+function checkNotificationsEnvironment() {
   if (!("Notification" in window) || !Notification || !messaging) {
     console.warn(
       logging,
@@ -69,6 +66,34 @@ export async function requestMessagingPermission(): Promise<boolean> {
     );
     return false;
   }
+
+  return true;
+}
+
+export function isNotificationsEnabled(): boolean {
+  console.info(logging, "getting notification permission");
+
+  if (!checkNotificationsEnvironment()) {
+    return false;
+  }
+
+  return Notification.permission === "granted";
+}
+
+export async function requestMessagingPermission(): Promise<boolean> {
+  if (isNotificationsEnabled()) {
+    return true;
+  }
+
+  if (!(await isInitialized)) {
+    return false;
+  }
+
+  if (!checkNotificationsEnvironment()) {
+    return false;
+  }
+
+  console.info(logging, "requesting notification permission");
 
   let permission: NotificationPermission | undefined;
   try {
@@ -89,11 +114,12 @@ export async function requestMessagingPermission(): Promise<boolean> {
     case "granted":
       console.info(logging, "notification permission granted");
       /* cSpell:disable */
-      const token = await getToken(messaging, {
+      const token = await getToken(messaging!, {
         vapidKey:
           "BPIAV7RZrW0zofnXKk88EmYsgCli3UMkJ7q3LpV6Pgl0COLvSZjpfdjJIZxY42nR0UtvFWrkmTbpC7-G42_Tfu0",
       });
       /* cSpell:enable */
+
       console.info(logging, token);
 
       return true;
