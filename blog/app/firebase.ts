@@ -86,16 +86,16 @@ export function isNotificationsEnabled(): boolean {
 }
 
 export async function requestMessagingPermission(): Promise<boolean> {
-  if (isNotificationsEnabled()) {
-    return true;
-  }
-
   if (!(await isInitialized)) {
     return false;
   }
 
   if (!checkNotificationsEnvironment()) {
     return false;
+  }
+
+  if (isNotificationsEnabled()) {
+    return true;
   }
 
   console.info(logging, "requesting notification permission");

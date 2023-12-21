@@ -1,13 +1,17 @@
 "use client";
 import { requestMessagingPermission, isNotificationsEnabled } from "@/firebase";
 import { Button } from "@nextui-org/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const logging = "[PushNotificationsButton]";
 
 export function PushNotificationsButton() {
   const [isLoading, setIsLoading] = useState(false);
-  const [enabled, setEnabled] = useState(isNotificationsEnabled());
+  const [enabled, setEnabled] = useState(true);
+
+  useEffect(() => {
+    setEnabled(isNotificationsEnabled());
+  }, []);
 
   if (enabled) {
     return <></>;
