@@ -41,7 +41,7 @@ export async function initialize(): Promise<boolean> {
 }
 
 async function registerServiceWorker() {
-  console.log(logging, "registering service worker");
+  console.info(logging, "registering service worker");
 
   if (
     typeof window === "undefined" ||
@@ -57,7 +57,7 @@ async function registerServiceWorker() {
     "./firebase-messaging-sw.js",
   );
 
-  console.log(logging, "response", response);
+  console.info(logging, "response", response);
 }
 
 function checkNotificationsEnvironment() {

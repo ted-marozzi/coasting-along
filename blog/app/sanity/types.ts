@@ -171,6 +171,8 @@ export interface Category extends SanityDocument {
   description: string;
 }
 
+export type Video = { _type: "video"; asset: SanityReference<any> };
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -186,6 +188,7 @@ export type BlockContent = Array<
        */
       alt: string;
     }>
+  | SanityKeyed<Video>
 >;
 
 export type Documents = Post | Author | Category;

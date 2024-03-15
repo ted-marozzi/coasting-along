@@ -9,10 +9,14 @@ import {
 } from "@portabletext/types";
 import { Link } from "@nextui-org/link";
 import { PortableImage } from "./portableImage";
+import { PortableVideo } from "@/ui/portableVideo";
 
 const components: Partial<PortableTextReactComponents> = {
   types: {
     image: PortableImage,
+    video: ({ value, index, isInline }) => (
+      <PortableVideo value={value} index={index} isInline={isInline} />
+    ),
   },
   block: {
     h1: ({ value }) => {
