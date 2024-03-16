@@ -91,7 +91,7 @@ export interface Post extends SanityDocument {
     hotspot?: SanityImageHotspot;
 
     /**
-     * Alternative text — `string`
+     * Main image caption — `string`
      *
      *
      */
@@ -171,7 +171,16 @@ export interface Category extends SanityDocument {
   description: string;
 }
 
-export type Video = { _type: "video"; asset: SanityReference<any> };
+export type Video = {
+  _type: "video";
+  asset: SanityReference<any>;
+  /**
+   * Video caption — `string`
+   *
+   *
+   */
+  alt: string;
+};
 
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
@@ -182,7 +191,7 @@ export type BlockContent = Array<
       hotspot?: SanityImageHotspot;
 
       /**
-       * Alternative text — `string`
+       * Image caption — `string`
        *
        *
        */

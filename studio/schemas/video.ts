@@ -1,4 +1,4 @@
-import { defineType, defineField } from "sanity";
+import { defineType } from "sanity";
 import { PlayIcon } from "@sanity/icons";
 
 export const video = defineType({
@@ -6,4 +6,14 @@ export const video = defineType({
   name: "video",
   title: "Video",
   icon: PlayIcon,
+  fields: [
+    {
+      name: "alt",
+      type: "string",
+      title: "Video caption",
+      validation: (Rule) => Rule.required(),
+      // @ts-ignore
+      codegen: { required: true },
+    },
+  ],
 });

@@ -66,7 +66,7 @@ export default defineType({
         {
           name: "alt",
           type: "string",
-          title: "Alternative text",
+          title: "Image caption",
           validation: (Rule) => Rule.required(),
           // @ts-ignore
           codegen: { required: true },

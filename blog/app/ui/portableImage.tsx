@@ -7,7 +7,7 @@ export function PortableImage({ value }: PortableTextTypeComponentProps<any>) {
   return (
     <div className="py-6">
       <SanityImage source={value} alt={""} />
-      <div className="text-center">{value.alt}</div>
+      <div className="text-center pt-1">{value.alt}</div>
     </div>
   );
 }

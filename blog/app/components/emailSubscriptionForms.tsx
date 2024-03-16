@@ -15,11 +15,7 @@ export function FloatingEmailSubscriptionForm() {
       lastDismissed = window?.localStorage?.getItem(key) ?? null;
     }
 
-    setHideForm(
-      lastDismissed !== null &&
-        new Date().getMilliseconds() - Date.parse(lastDismissed) <
-          32 * 24 * 60 * 60 * 1000,
-    );
+    setHideForm(lastDismissed !== null);
   }, []);
 
   return (

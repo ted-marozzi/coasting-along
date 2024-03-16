@@ -1,6 +1,6 @@
 "use client";
 import { clientConfig } from "@/sanity/client";
-import { cn } from "@nextui-org/react";
+import { Progress, cn } from "@nextui-org/react";
 import { PortableTextTypeComponentProps } from "@portabletext/react";
 import { getFile } from "@sanity/asset-utils";
 import { useState } from "react";
@@ -8,9 +8,8 @@ import { useState } from "react";
 export function PortableVideo({
   value,
 }: Omit<PortableTextTypeComponentProps<any>, "renderNode">) {
-  const [hasPlayed, setHasPlayed] = useState(false);
-
-  // TODO: get working on mobile, ask darling if it needs an alt underneath,
+  const [blurred, setBlurred] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   if (!value?.asset?._ref) {
     return null;
@@ -22,9 +21,10 @@ export function PortableVideo({
   });
 
   return (
-    <div className="py-6 relative flex justify-center items-center">
+    <div className="py-6 relative flex flex-col justify-center items-center">
       <video
-        className={cn("rounded-xl", { "blur-sm": !hasPlayed })}
+        aria-label=""
+        className={cn("rounded-xl", { "blur-sm": blurred })}
         muted
         playsInline
         onMouseEnter={(event) => {
@@ -36,17 +36,20 @@ export function PortableVideo({
         onMouseLeave={(event) => {
           event.currentTarget.pause();
         }}
+        onCanPlay={() => {
+          setLoading(false);
+        }}
+        onWaiting={() => {
+          setLoading(true);
+        }}
         onPlaying={() => {
-          setHasPlayed(true);
+          setBlurred(false);
         }}
       >
         <source src={file.asset.url} />
       </video>
-      {!hasPlayed && (
-        <div className="absolute p-4 text-3xl backdrop-blur-2xl bg-white/60 rounded-lg">
-          Hover me!
-        </div>
-      )}
+      {loading && <Progress isIndeterminate={true} className="py-2" size="sm" />}
+      {value.alt && <div className="text-center pt-1">{value.alt}</div>}
     </div>
   );
 }
