@@ -37,6 +37,7 @@ export function PortableVideo({
           className={cn("rounded-xl", { "blur-sm": blurred })}
           muted
           playsInline
+          preload="auto"
           style={{
             maxHeight: "70vh",
             maxWidth: "min(90vw, 100%)",
@@ -66,7 +67,7 @@ export function PortableVideo({
             setBlurred(false);
           }}
         >
-          <source src={file.asset.url} />
+          <source src={file.asset.url} type="video/mp4" />
         </video>
       </Skeleton>
       {showUserPrompt && !initialLoad && !loading && (
