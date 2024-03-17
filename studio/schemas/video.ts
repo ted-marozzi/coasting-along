@@ -11,6 +11,7 @@ export const video = defineType({
       name: "alt",
       type: "string",
       title: "Video caption",
+      description: "Compress video here: https://www.freeconvert.com/video-compressor",
       validation: (Rule) => Rule.required(),
       // @ts-ignore
       codegen: { required: true },
