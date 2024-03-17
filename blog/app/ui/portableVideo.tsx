@@ -59,7 +59,7 @@ export function PortableVideo({
           <source src={file.asset.url} />
         </video>
       </Skeleton>
-      {showUserPrompt && (
+      {showUserPrompt && !initialLoad && !loading && (
         <div className="flex justify-center items-center w-full h-full absolute pointer-events-none">
           <span className="text-xl rounded-lg backdrop-blur-3xl p-4">
             {isMobile ? "Tap" : "Hover"} me!
