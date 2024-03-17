@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 export function FloatingEmailSubscriptionForm() {
   const router = useRouter();
@@ -9,6 +10,10 @@ export function FloatingEmailSubscriptionForm() {
   const [hideForm, setHideForm] = useState(true);
 
   useEffect(() => {
+    if (isMobile) {
+      setHideForm(true);
+      return;
+    }
     let lastDismissed: string | null = null;
 
     try {
