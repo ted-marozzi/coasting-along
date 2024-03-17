@@ -177,7 +177,7 @@ export type Video = {
   /**
    * Video caption — `string`
    *
-   * Export as 720p in QuickTime first
+   *
    */
   alt: string;
 };
