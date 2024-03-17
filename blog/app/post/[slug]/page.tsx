@@ -19,6 +19,7 @@ export type PostDeref = Omit<Post, "authors" | "categories"> & {
 };
 
 export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 type RouteParams = { params: { slug: string } };
 
