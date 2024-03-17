@@ -1,15 +1,16 @@
 "use client";
 import { clientConfig } from "@/sanity/client";
-import { Progress, Skeleton, cn } from "@nextui-org/react";
+import { Progress, cn } from "@nextui-org/react";
 import { PortableTextTypeComponentProps } from "@portabletext/react";
 import { getFile } from "@sanity/asset-utils";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 export function PortableVideo({
   value,
 }: Omit<PortableTextTypeComponentProps<any>, "renderNode">) {
   const [loading, setLoading] = useState(true);
+  const [hasBeenPlayed, setHasBeenPlayed] = useState(false);
 
   if (!value?.asset?._ref) {
     return null;
@@ -35,14 +36,19 @@ export function PortableVideo({
           overflow: "auto",
           objectPosition: "center",
         }}
+        onMouseEnter={(event) => {
+          event.currentTarget.play();
+        }}
         onClick={(event) => {
-          if (event.currentTarget.paused) {
-            event.currentTarget.play();
-          } else {
+          event.currentTarget.play();
+        }}
+        onPlay={() => {
+          setHasBeenPlayed(true);
+        }}
+        onCanPlay={(event) => {
+          if (!hasBeenPlayed) {
             event.currentTarget.pause();
           }
-        }}
-        onCanPlay={() => {
           setLoading(false);
         }}
         onWaiting={() => {
@@ -51,6 +57,13 @@ export function PortableVideo({
       >
         <source src={file.asset.url} type="video/mp4" />
       </video>
+      {!loading && !hasBeenPlayed && (
+        <div className="flex justify-center items-center w-full h-full absolute pointer-events-none">
+          <span className="text-xl rounded-lg backdrop-blur-3xl p-4">
+            {isMobile ? "Tap" : "Hover"} me!
+          </span>
+        </div>
+      )}
       {loading && <Progress isIndeterminate={true} className="py-2" size="sm" />}
       {value.alt && <div className="text-center pt-1">{value.alt}</div>}
     </div>
