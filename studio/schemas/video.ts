@@ -11,7 +11,7 @@ export const video = defineType({
       name: "alt",
       type: "string",
       title: "Video caption",
-      description: "Compress video here: https://www.freeconvert.com/video-compressor",
+      description: "Export as 720p in QuickTime first",
       validation: (Rule) => Rule.required(),
       // @ts-ignore
       codegen: { required: true },

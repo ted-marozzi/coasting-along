@@ -177,7 +177,7 @@ export type Video = {
   /**
    * Video caption — `string`
    *
-   * Compress video here: https://www.freeconvert.com/video-compressor
+   * Export as 720p in QuickTime first
    */
   alt: string;
 };
