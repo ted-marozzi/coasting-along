@@ -1,0 +1,12 @@
+{
+  "name": "coasting-along",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev:blog": "cd blog && npm run dev",
+    "dev:studio": "cd studio && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
