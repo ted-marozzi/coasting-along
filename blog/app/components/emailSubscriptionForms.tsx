@@ -11,17 +11,12 @@ export function FloatingEmailSubscriptionForm() {
   useEffect(() => {
     let lastDismissed: string | null = null;
 
-    if (
-      typeof window !== "undefined" &&
-      window.localStorage != null &&
-      window.localStorage.getItem != null
-    ) {
-      try {
-        lastDismissed = window.localStorage.getItem(key);
-      } catch (err) {
-        setHideForm(true);
-        return;
-      }
+    try {
+      window.localStorage.setItem("is-local-storage-available", "true");
+      lastDismissed = window.localStorage.getItem(key);
+    } catch (err) {
+      setHideForm(true);
+      return;
     }
 
     setHideForm(lastDismissed !== null);
