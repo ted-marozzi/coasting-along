@@ -3,7 +3,7 @@ import { clientConfig } from "@/sanity/client";
 import { Progress, cn } from "@nextui-org/react";
 import { PortableTextTypeComponentProps } from "@portabletext/react";
 import { getFile } from "@sanity/asset-utils";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { isMobile } from "react-device-detect";
 
 export function PortableVideo({
@@ -43,9 +43,15 @@ export function PortableVideo({
           event.currentTarget.play();
         }}
         onPlay={() => {
+          setLoading(false);
+          setHasBeenPlayed(true);
+        }}
+        onPlaying={() => {
+          setLoading(false);
           setHasBeenPlayed(true);
         }}
         onCanPlay={(event) => {
+          // Stop autoplay, we set the attribute only to make the video download on ios mobile
           if (!hasBeenPlayed) {
             event.currentTarget.pause();
           }
@@ -64,7 +70,7 @@ export function PortableVideo({
           </span>
         </div>
       )}
-      {loading && <Progress isIndeterminate={true} className="py-2" size="sm" />}
+      {loading && <Progress isIndeterminate={true} className="py-2 w-40" size="sm" />}
       {value.alt && <div className="text-center pt-1">{value.alt}</div>}
     </div>
   );
