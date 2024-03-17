@@ -70,7 +70,7 @@ export function PortableVideo({
           </span>
         </div>
       )}
-      {loading && <Progress isIndeterminate={true} className="py-2 w-44" size="sm" />}
+      {loading && <Progress isIndeterminate={true} className="py-2 w-40" size="sm" />}
       {value.alt && <div className="text-center pt-1">{value.alt}</div>}
     </div>
   );
