@@ -27,8 +27,6 @@ export function PortableVideo({
         className={cn("rounded-xl")}
         muted
         playsInline
-        controls={false}
-        preload="auto"
         autoPlay
         style={{
           maxHeight: "70vh",
