@@ -11,7 +11,7 @@ export const video = defineType({
       name: "alt",
       type: "string",
       title: "Video caption",
-      description: "Export as 720p in QuickTime first",
+      description: "🚨 Remove audio and export as 720p in QuickTime first",
       validation: (Rule) => Rule.required(),
       // @ts-ignore
       codegen: { required: true },
