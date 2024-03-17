@@ -9,10 +9,19 @@ export function FloatingEmailSubscriptionForm() {
   const [hideForm, setHideForm] = useState(true);
 
   useEffect(() => {
-    let lastDismissed = null;
+    let lastDismissed: string | null = null;
 
-    if (typeof window !== "undefined") {
-      lastDismissed = window?.localStorage?.getItem(key) ?? null;
+    if (
+      typeof window !== "undefined" &&
+      window.localStorage != null &&
+      window.localStorage.getItem != null
+    ) {
+      try {
+        lastDismissed = window.localStorage.getItem(key);
+      } catch (err) {
+        setHideForm(true);
+        return;
+      }
     }
 
     setHideForm(lastDismissed !== null);
