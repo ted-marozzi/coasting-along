@@ -28,12 +28,22 @@ export function PortableVideo({
 
   return (
     <div className="py-6 relative flex flex-col justify-center items-center">
-      <Skeleton className="rounded-xl w-full" isLoaded={!initialLoad}>
+      <Skeleton
+        className="rounded-xl w-full flex flex-col justify-center items-center"
+        isLoaded={!initialLoad}
+      >
         <video
           aria-label=""
           className={cn("rounded-xl", { "blur-sm": blurred })}
           muted
           playsInline
+          style={{
+            maxHeight: "70vh",
+            maxWidth: "min(90vw, 100%)",
+            objectFit: "contain",
+            overflow: "auto",
+            objectPosition: "center",
+          }}
           onMouseEnter={(event) => {
             event.currentTarget.play();
             setShowUserPrompt(false);
