@@ -7,6 +7,7 @@ import { SanityImage } from "@/sanity/image";
 const route = "[/]";
 
 export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const posts = await client.fetch<
